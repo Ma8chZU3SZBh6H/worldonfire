@@ -24,9 +24,11 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var Home = function Home() {
   var foo = "React";
   var bar = "TypeScript";
-  return react_1["default"].createElement("h1", {
+  return react_1["default"].createElement("div", null, react_1["default"].createElement("nav", null, react_1["default"].createElement("i", {
+    className: "fas fa-bars"
+  }), react_1["default"].createElement("h1", {
     className: "text-red-700"
-  }, "Hello ", foo, " + ", bar);
+  }, "WorldOnFire")));
 };
 
 exports["default"] = Home;

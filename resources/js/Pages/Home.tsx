@@ -5,9 +5,12 @@ const Home = () => {
     const bar: string = "TypeScript";
 
     return (
-        <h1 className="text-red-700">
-            Hello {foo} + {bar}
-        </h1>
+        <div>
+            <nav>
+                <i className="fas fa-bars"></i>
+                <h1 className="text-red-700">WorldOnFire</h1>
+            </nav>
+        </div>
     );
 };
 
