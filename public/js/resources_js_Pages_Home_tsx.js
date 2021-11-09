@@ -24,7 +24,9 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var Home = function Home() {
   var foo = "React";
   var bar = "TypeScript";
-  return react_1["default"].createElement("h1", null, "Hello ", foo, " + ", bar);
+  return react_1["default"].createElement("h1", {
+    className: "text-red-700"
+  }, "Hello ", foo, " + ", bar);
 };
 
 exports["default"] = Home;
