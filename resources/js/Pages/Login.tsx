@@ -1,16 +1,13 @@
 import React from "react";
 import Navbar from "../Components/Navbar";
 
-const Home = () => {
-    let foo: string = "React";
-    const bar: string = "TypeScript";
-
+function Login() {
     return (
         <div>
             <Navbar />
-            <div>Home</div>
+            <div>LOGIN</div>
         </div>
     );
-};
+}
 
-export default Home;
+export default Login;

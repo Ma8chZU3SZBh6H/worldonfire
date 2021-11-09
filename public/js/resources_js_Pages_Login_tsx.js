@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Home_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Login_tsx"],{
 
 /***/ "./resources/js/Components/Navbar.tsx":
 /*!********************************************!*\
@@ -45,10 +45,10 @@ exports["default"] = Navbar;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/Pages/Login.tsx":
+/*!**************************************!*\
+  !*** ./resources/js/Pages/Login.tsx ***!
+  \**************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
@@ -67,13 +67,11 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 
 var Navbar_1 = __importDefault(__webpack_require__(/*! ../Components/Navbar */ "./resources/js/Components/Navbar.tsx"));
 
-var Home = function Home() {
-  var foo = "React";
-  var bar = "TypeScript";
-  return react_1["default"].createElement("div", null, react_1["default"].createElement(Navbar_1["default"], null), react_1["default"].createElement("div", null, "Home"));
-};
+function Login() {
+  return react_1["default"].createElement("div", null, react_1["default"].createElement(Navbar_1["default"], null), react_1["default"].createElement("div", null, "LOGIN"));
+}
 
-exports["default"] = Home;
+exports["default"] = Login;
 
 /***/ })
 
