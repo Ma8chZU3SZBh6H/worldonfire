@@ -1,5 +1,7 @@
 import { ReactChildren } from "react";
 
+//components
+
 export interface TypePropsMain {
     children: ReactChildren | React.ReactChild;
 }
@@ -27,6 +29,8 @@ export interface TypeInputLabel {
     label?: string;
 }
 
+//forms
+
 export interface TypeFormRegister {
     name: { value: string };
     email: { value: string };
@@ -40,10 +44,18 @@ export interface TypeFormLogin {
     remember: { checked: boolean };
 }
 
+//props
+
 export interface TypePageProps {
     [key: string]: unknown;
     errors: object;
     user: User;
+}
+
+//redux actions
+export interface TypeReduxAction {
+    type: string;
+    payload: any;
 }
 
 //generated
