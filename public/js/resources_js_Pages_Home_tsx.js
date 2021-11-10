@@ -25,6 +25,12 @@ var __assign = this && this.__assign || function () {
   return __assign.apply(this, arguments);
 };
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
@@ -33,25 +39,31 @@ var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
+var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
+
 function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
+  var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
     className: " shadow-md"
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: " flex justify-between px-2 py-1  items-center"
+      className: " flex justify-between px-4 py-4  items-center"
     }, {
       children: [(0, jsx_runtime_1.jsxs)("div", __assign({
         className: "flex items-center gap-3"
       }, {
-        children: [(0, jsx_runtime_1.jsx)("div", __assign({
+        children: [(0, jsx_runtime_1.jsx)("button", __assign({
+          onClick: function onClick() {
+            return navActionToggle();
+          },
           className: "transition text-gray-700 hover:text-blue-700 cursor-pointer"
         }, {
           children: (0, jsx_runtime_1.jsx)("i", {
             className: "fas fa-bars fa-lg"
           }, void 0)
         }), void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
-          className: "text-2xl font-bold text-gray-700"
+          className: "text-2xl font-bold text-gray-700 tracking-widest"
         }, {
           children: (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
             href: "/"
@@ -77,6 +89,89 @@ function Navbar() {
 }
 
 exports["default"] = Navbar;
+
+/***/ }),
+
+/***/ "./resources/js/Hooks/useNav.ts":
+/*!**************************************!*\
+  !*** ./resources/js/Hooks/useNav.ts ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var navActions = __importStar(__webpack_require__(/*! ../State/Actions/navActions */ "./resources/js/State/Actions/navActions.ts"));
+
+function useNav() {
+  var nav = (0, react_redux_1.useSelector)(function (store) {
+    return store.nav;
+  });
+  var dispatch = (0, react_redux_1.useDispatch)();
+  var actions = (0, redux_1.bindActionCreators)(navActions, dispatch);
+  return __assign({
+    nav: nav
+  }, actions);
+}
+
+exports["default"] = useNav;
 
 /***/ }),
 
@@ -151,16 +246,19 @@ var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
+var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
+
 var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resources/js/Layouts/Main.tsx"));
 
 var Home = function Home() {
+  var nav = (0, useNav_1["default"])().nav;
   var props = (0, inertia_react_1.usePage)().props;
   console.log(props);
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: "grid grid-cols-auto-auto-1fr gap-3"
+      className: "grid gap-1 " + (nav.expanded ? "grid-cols-auto-1fr-2fr-home" : "grid-cols-1fr-2fr-home")
     }, {
-      children: [(0, jsx_runtime_1.jsxs)("div", __assign({
+      children: [nav.expanded && (0, jsx_runtime_1.jsxs)("div", __assign({
         className: "flex flex-col gap-3 py-4"
       }, {
         children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
@@ -174,20 +272,129 @@ var Home = function Home() {
         }, {
           children: "Favorites"
         }), void 0)]
-      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-        className: "py-8"
+      }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+        className: "py-8 px-4 flex flex-col gap-3"
       }, {
-        children: "auto"
+        children: [(0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "px-8 py-6 border rounded-md grid grid-cols-1fr-auto gap-y-4 bg-blue-50"
+        }, {
+          children: [(0, jsx_runtime_1.jsx)("p", __assign({
+            className: "font-medium text-lg"
+          }, {
+            children: "ZipCharge Go Looks Like a Rolling Suitcase but It\u2019s Actually an Electric Vehicle Battery Pack"
+          }), void 0), (0, jsx_runtime_1.jsx)("div", {
+            className: "bg-test bg-cover bg-center h-20 w-20 rounded"
+          }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+            className: "col-span-2 flex justify-between "
+          }, {
+            children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the German, Italian and even\u2026\\nThe post ZipCharge Go Looks Like a R\u2026"
+          }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+            className: "col-span-2 flex justify-between "
+          }, {
+            children: [(0, jsx_runtime_1.jsx)("div", {
+              children: "2021-11-10T15:04:07Z"
+            }, void 0), (0, jsx_runtime_1.jsx)("div", {
+              children: "By Ben Dahl"
+            }, void 0)]
+          }), void 0)]
+        }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "px-8 py-6 border rounded-md grid grid-cols-1fr-auto gap-y-4"
+        }, {
+          children: [(0, jsx_runtime_1.jsx)("p", __assign({
+            className: "font-medium text-lg"
+          }, {
+            children: "ZipCharge Go Looks Like a Rolling Suitcase but It\u2019s Actually an Electric Vehicle Battery Pack"
+          }), void 0), (0, jsx_runtime_1.jsx)("div", {
+            className: "bg-test bg-cover bg-center h-20 w-20 rounded"
+          }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+            className: "col-span-2 flex justify-between "
+          }, {
+            children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the German, Italian and even\u2026\\nThe post ZipCharge Go Looks Like a R\u2026"
+          }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+            className: "col-span-2 flex justify-between "
+          }, {
+            children: [(0, jsx_runtime_1.jsx)("div", {
+              children: "2021-11-10T15:04:07Z"
+            }, void 0), (0, jsx_runtime_1.jsxs)("div", {
+              children: ["By ", (0, jsx_runtime_1.jsx)("span", __assign({
+                className: "font-medium"
+              }, {
+                children: "Ben Dahl"
+              }), void 0)]
+            }, void 0)]
+          }), void 0)]
+        }), void 0)]
       }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-        className: "py-8"
+        className: "py-8 px-4"
       }, {
-        children: "1fr"
+        children: (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: " border rounded-md flex flex-col gap-3"
+        }, {
+          children: [(0, jsx_runtime_1.jsxs)("div", __assign({
+            className: "px-8 py-6 bg-blue-50 grid grid-cols-1fr-auto gap-y-4"
+          }, {
+            children: [(0, jsx_runtime_1.jsx)("h1", __assign({
+              className: " font-medium text-lg "
+            }, {
+              children: "ZipCharge Go Looks Like a Rolling Suitcase but It\u2019s Actually an Electric Vehicle Battery Pack"
+            }), void 0), (0, jsx_runtime_1.jsx)("div", {
+              className: "bg-test bg-cover bg-center  h-20 w-20 rounded"
+            }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+              className: "col-span-2 flex justify-between "
+            }, {
+              children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the German, Italian and even\u2026\\nThe post ZipCharge Go Looks Like a R\u2026"
+            }), void 0)]
+          }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+            className: "px-8 py-6 flex flex-col gap-3"
+          }, {
+            children: (0, jsx_runtime_1.jsx)("div", {
+              children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars] Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the Ge\u2026 [+1190 chars]"
+            }, void 0)
+          }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+            className: "px-8 py-6 bg-blue-50 flex justify-between"
+          }, {
+            children: [(0, jsx_runtime_1.jsx)("div", {
+              children: "2021-11-10T15:04:07Z"
+            }, void 0), (0, jsx_runtime_1.jsxs)("div", {
+              children: ["By ", (0, jsx_runtime_1.jsx)("span", __assign({
+                className: "font-medium"
+              }, {
+                children: "Ben Dahl"
+              }), void 0)]
+            }, void 0)]
+          }), void 0)]
+        }), void 0)
       }), void 0)]
     }), void 0)
   }, void 0);
 };
 
 exports["default"] = Home;
+
+/***/ }),
+
+/***/ "./resources/js/State/Actions/navActions.ts":
+/*!**************************************************!*\
+  !*** ./resources/js/State/Actions/navActions.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.navActionToggle = void 0;
+
+var navConstants_1 = __webpack_require__(/*! ../Constants/navConstants */ "./resources/js/State/Constants/navConstants.ts");
+
+function navActionToggle() {
+  return {
+    type: navConstants_1.navConstants.TOGGLE
+  };
+}
+
+exports.navActionToggle = navActionToggle;
 
 /***/ }),
 

@@ -3065,15 +3065,15 @@ var __importDefault = this && this.__importDefault || function (mod) {
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
+exports.reducers = void 0;
 
 var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 
 var navReducer_1 = __importDefault(__webpack_require__(/*! ./navReducer */ "./resources/js/State/Reducers/navReducer.ts"));
 
-var reducers = (0, redux_1.combineReducers)({
+exports.reducers = (0, redux_1.combineReducers)({
   nav: navReducer_1["default"]
 });
-exports["default"] = reducers;
 
 /***/ }),
 
@@ -3101,7 +3101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var app = document.getElementById("app");
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)((_State_Reducers_reducers__WEBPACK_IMPORTED_MODULE_5___default()), (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__.composeWithDevTools)());
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_6__.createStore)(_State_Reducers_reducers__WEBPACK_IMPORTED_MODULE_5__.reducers, (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_4__.composeWithDevTools)());
 (0,react_dom__WEBPACK_IMPORTED_MODULE_2__.render)( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__.Provider, {
   store: store
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.InertiaApp, {

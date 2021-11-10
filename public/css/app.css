@@ -16375,6 +16375,66 @@ video {
   grid-template-columns: auto auto 1fr;
 }
 
+.grid-cols-auto-1fr-1fr {
+  grid-template-columns: auto 1fr 1fr;
+}
+
+.grid-cols-auto-1fr-10fr {
+  grid-template-columns: auto 1fr 10fr;
+}
+
+.grid-cols-auto-1fr-5fr {
+  grid-template-columns: auto 1fr 5fr;
+}
+
+.grid-cols-auto-1fr-4fr {
+  grid-template-columns: auto 1fr 4fr;
+}
+
+.grid-cols-auto-1fr-3fr {
+  grid-template-columns: auto 1fr 3fr;
+}
+
+.grid-cols-auto-1fr-2fr {
+  grid-template-columns: auto 1fr 2fr;
+}
+
+.grid-cols-auto-1fr-2fr-home {
+  grid-template-columns: auto minmax(300px, 600px) 2fr;
+}
+
+.grid-cols-1fr-2fr-home {
+  grid-template-columns: minmax(300px, 600px) 2fr;
+}
+
+.grid-cols-auto-1fr {
+  grid-template-columns: auto 1fr;
+}
+
+.grid-cols-1fr-auto {
+  grid-template-columns: 1fr auto;
+}
+
+.grid-cols-1fr-1fr {
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-cols-1fr-10fr {
+  grid-template-columns: 1fr 10fr;
+}
+
+.grid-cols-1fr-5fr {
+  grid-template-columns: 1fr 5fr;
+}
+
+.grid-cols-auto {
+  grid-template-columns: auto;
+}
+
+.grid-cols-1fr {
+  grid-template-columns: 1fr;
+}
+
 .grid-rows-1 {
   grid-template-rows: repeat(1, minmax(0, 1fr));
 }
@@ -23920,6 +23980,10 @@ video {
 
 .bg-gradient-to-tl {
   background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+}
+
+.bg-test {
+  background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
 }
 
 .from-transparent {
@@ -47754,6 +47818,66 @@ video {
     grid-template-columns: auto auto 1fr;
   }
 
+  .sm\:grid-cols-auto-1fr-1fr {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-10fr {
+    grid-template-columns: auto 1fr 10fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-5fr {
+    grid-template-columns: auto 1fr 5fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-4fr {
+    grid-template-columns: auto 1fr 4fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-3fr {
+    grid-template-columns: auto 1fr 3fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-2fr {
+    grid-template-columns: auto 1fr 2fr;
+  }
+
+  .sm\:grid-cols-auto-1fr-2fr-home {
+    grid-template-columns: auto minmax(300px, 600px) 2fr;
+  }
+
+  .sm\:grid-cols-1fr-2fr-home {
+    grid-template-columns: minmax(300px, 600px) 2fr;
+  }
+
+  .sm\:grid-cols-auto-1fr {
+    grid-template-columns: auto 1fr;
+  }
+
+  .sm\:grid-cols-1fr-auto {
+    grid-template-columns: 1fr auto;
+  }
+
+  .sm\:grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sm\:grid-cols-1fr-10fr {
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .sm\:grid-cols-1fr-5fr {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .sm\:grid-cols-auto {
+    grid-template-columns: auto;
+  }
+
+  .sm\:grid-cols-1fr {
+    grid-template-columns: 1fr;
+  }
+
   .sm\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
@@ -55299,6 +55423,10 @@ video {
 
   .sm\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+  }
+
+  .sm\:bg-test {
+    background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
   }
 
   .sm\:from-transparent {
@@ -78986,6 +79114,66 @@ video {
     grid-template-columns: auto auto 1fr;
   }
 
+  .md\:grid-cols-auto-1fr-1fr {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .md\:grid-cols-auto-1fr-10fr {
+    grid-template-columns: auto 1fr 10fr;
+  }
+
+  .md\:grid-cols-auto-1fr-5fr {
+    grid-template-columns: auto 1fr 5fr;
+  }
+
+  .md\:grid-cols-auto-1fr-4fr {
+    grid-template-columns: auto 1fr 4fr;
+  }
+
+  .md\:grid-cols-auto-1fr-3fr {
+    grid-template-columns: auto 1fr 3fr;
+  }
+
+  .md\:grid-cols-auto-1fr-2fr {
+    grid-template-columns: auto 1fr 2fr;
+  }
+
+  .md\:grid-cols-auto-1fr-2fr-home {
+    grid-template-columns: auto minmax(300px, 600px) 2fr;
+  }
+
+  .md\:grid-cols-1fr-2fr-home {
+    grid-template-columns: minmax(300px, 600px) 2fr;
+  }
+
+  .md\:grid-cols-auto-1fr {
+    grid-template-columns: auto 1fr;
+  }
+
+  .md\:grid-cols-1fr-auto {
+    grid-template-columns: 1fr auto;
+  }
+
+  .md\:grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .md\:grid-cols-1fr-10fr {
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .md\:grid-cols-1fr-5fr {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .md\:grid-cols-auto {
+    grid-template-columns: auto;
+  }
+
+  .md\:grid-cols-1fr {
+    grid-template-columns: 1fr;
+  }
+
   .md\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
@@ -86531,6 +86719,10 @@ video {
 
   .md\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+  }
+
+  .md\:bg-test {
+    background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
   }
 
   .md\:from-transparent {
@@ -110218,6 +110410,66 @@ video {
     grid-template-columns: auto auto 1fr;
   }
 
+  .lg\:grid-cols-auto-1fr-1fr {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-10fr {
+    grid-template-columns: auto 1fr 10fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-5fr {
+    grid-template-columns: auto 1fr 5fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-4fr {
+    grid-template-columns: auto 1fr 4fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-3fr {
+    grid-template-columns: auto 1fr 3fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-2fr {
+    grid-template-columns: auto 1fr 2fr;
+  }
+
+  .lg\:grid-cols-auto-1fr-2fr-home {
+    grid-template-columns: auto minmax(300px, 600px) 2fr;
+  }
+
+  .lg\:grid-cols-1fr-2fr-home {
+    grid-template-columns: minmax(300px, 600px) 2fr;
+  }
+
+  .lg\:grid-cols-auto-1fr {
+    grid-template-columns: auto 1fr;
+  }
+
+  .lg\:grid-cols-1fr-auto {
+    grid-template-columns: 1fr auto;
+  }
+
+  .lg\:grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .lg\:grid-cols-1fr-10fr {
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .lg\:grid-cols-1fr-5fr {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .lg\:grid-cols-auto {
+    grid-template-columns: auto;
+  }
+
+  .lg\:grid-cols-1fr {
+    grid-template-columns: 1fr;
+  }
+
   .lg\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
@@ -117763,6 +118015,10 @@ video {
 
   .lg\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+  }
+
+  .lg\:bg-test {
+    background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
   }
 
   .lg\:from-transparent {
@@ -141450,6 +141706,66 @@ video {
     grid-template-columns: auto auto 1fr;
   }
 
+  .xl\:grid-cols-auto-1fr-1fr {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-10fr {
+    grid-template-columns: auto 1fr 10fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-5fr {
+    grid-template-columns: auto 1fr 5fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-4fr {
+    grid-template-columns: auto 1fr 4fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-3fr {
+    grid-template-columns: auto 1fr 3fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-2fr {
+    grid-template-columns: auto 1fr 2fr;
+  }
+
+  .xl\:grid-cols-auto-1fr-2fr-home {
+    grid-template-columns: auto minmax(300px, 600px) 2fr;
+  }
+
+  .xl\:grid-cols-1fr-2fr-home {
+    grid-template-columns: minmax(300px, 600px) 2fr;
+  }
+
+  .xl\:grid-cols-auto-1fr {
+    grid-template-columns: auto 1fr;
+  }
+
+  .xl\:grid-cols-1fr-auto {
+    grid-template-columns: 1fr auto;
+  }
+
+  .xl\:grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .xl\:grid-cols-1fr-10fr {
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .xl\:grid-cols-1fr-5fr {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .xl\:grid-cols-auto {
+    grid-template-columns: auto;
+  }
+
+  .xl\:grid-cols-1fr {
+    grid-template-columns: 1fr;
+  }
+
   .xl\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
@@ -148995,6 +149311,10 @@ video {
 
   .xl\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+  }
+
+  .xl\:bg-test {
+    background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
   }
 
   .xl\:from-transparent {
@@ -172682,6 +173002,66 @@ video {
     grid-template-columns: auto auto 1fr;
   }
 
+  .\32xl\:grid-cols-auto-1fr-1fr {
+    grid-template-columns: auto 1fr 1fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-10fr {
+    grid-template-columns: auto 1fr 10fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-5fr {
+    grid-template-columns: auto 1fr 5fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-4fr {
+    grid-template-columns: auto 1fr 4fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-3fr {
+    grid-template-columns: auto 1fr 3fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-2fr {
+    grid-template-columns: auto 1fr 2fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr-2fr-home {
+    grid-template-columns: auto minmax(300px, 600px) 2fr;
+  }
+
+  .\32xl\:grid-cols-1fr-2fr-home {
+    grid-template-columns: minmax(300px, 600px) 2fr;
+  }
+
+  .\32xl\:grid-cols-auto-1fr {
+    grid-template-columns: auto 1fr;
+  }
+
+  .\32xl\:grid-cols-1fr-auto {
+    grid-template-columns: 1fr auto;
+  }
+
+  .\32xl\:grid-cols-1fr-1fr {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .\32xl\:grid-cols-1fr-10fr {
+    grid-template-columns: 1fr 10fr;
+  }
+
+  .\32xl\:grid-cols-1fr-5fr {
+    grid-template-columns: 1fr 5fr;
+  }
+
+  .\32xl\:grid-cols-auto {
+    grid-template-columns: auto;
+  }
+
+  .\32xl\:grid-cols-1fr {
+    grid-template-columns: 1fr;
+  }
+
   .\32xl\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
   }
@@ -180227,6 +180607,10 @@ video {
 
   .\32xl\:bg-gradient-to-tl {
     background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+  }
+
+  .\32xl\:bg-test {
+    background-image: url('https://coolmaterial.com/wp-content/uploads/2021/11/Zipcharge-Go-4.jpg');
   }
 
   .\32xl\:from-transparent {

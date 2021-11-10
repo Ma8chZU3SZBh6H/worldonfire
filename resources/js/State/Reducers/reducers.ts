@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import navReducer from "./navReducer";
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
     nav: navReducer,
 });
 
-export default reducers;
+export type TypeStore = ReturnType<typeof reducers>;
