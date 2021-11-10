@@ -39,15 +39,19 @@ function Navbar() {
     className: " shadow-md"
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: "max-w-7xl flex justify-between px-2 py-1 mx-auto"
+      className: " flex justify-between px-2 py-1  items-center"
     }, {
       children: [(0, jsx_runtime_1.jsxs)("div", __assign({
         className: "flex items-center gap-3"
       }, {
-        children: [(0, jsx_runtime_1.jsx)("i", {
-          className: "fas fa-bars tex"
-        }, void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
-          className: "text-2xl"
+        children: [(0, jsx_runtime_1.jsx)("div", __assign({
+          className: "transition text-gray-700 hover:text-blue-700 cursor-pointer"
+        }, {
+          children: (0, jsx_runtime_1.jsx)("i", {
+            className: "fas fa-bars fa-lg"
+          }, void 0)
+        }), void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
+          className: "text-2xl font-bold text-gray-700"
         }, {
           children: (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
             href: "/"
@@ -84,6 +88,39 @@ exports["default"] = Navbar;
 
 
 
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var Navbar_1 = __importDefault(__webpack_require__(/*! ../Components/Navbar */ "./resources/js/Components/Navbar.tsx"));
+
+function Main(_a) {
+  var children = _a.children;
+  return (0, jsx_runtime_1.jsxs)("div", {
+    children: [(0, jsx_runtime_1.jsx)(Navbar_1["default"], {}, void 0), children]
+  }, void 0);
+}
+
+exports["default"] = Main;
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Home.tsx":
+/*!*************************************!*\
+  !*** ./resources/js/Pages/Home.tsx ***!
+  \*************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
 var __assign = this && this.__assign || function () {
   __assign = Object.assign || function (t) {
     for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -112,43 +149,6 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-var Navbar_1 = __importDefault(__webpack_require__(/*! ../Components/Navbar */ "./resources/js/Components/Navbar.tsx"));
-
-function Main(_a) {
-  var children = _a.children;
-  return (0, jsx_runtime_1.jsxs)("div", {
-    children: [(0, jsx_runtime_1.jsx)(Navbar_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-      className: "max-w-7xl mx-auto px-2 pb-4 pt-8"
-    }, {
-      children: children
-    }), void 0)]
-  }, void 0);
-}
-
-exports["default"] = Main;
-
-/***/ }),
-
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-
-
-var __importDefault = this && this.__importDefault || function (mod) {
-  return mod && mod.__esModule ? mod : {
-    "default": mod
-  };
-};
-
-Object.defineProperty(exports, "__esModule", ({
-  value: true
-}));
-
-var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resources/js/Layouts/Main.tsx"));
@@ -157,9 +157,33 @@ var Home = function Home() {
   var props = (0, inertia_react_1.usePage)().props;
   console.log(props);
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
-    children: (0, jsx_runtime_1.jsx)("div", {
-      children: "Home"
-    }, void 0)
+    children: (0, jsx_runtime_1.jsxs)("div", __assign({
+      className: "grid grid-cols-auto-auto-1fr gap-3"
+    }, {
+      children: [(0, jsx_runtime_1.jsxs)("div", __assign({
+        className: "flex flex-col gap-3 py-4"
+      }, {
+        children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          href: "",
+          className: "nav-link-selected"
+        }, {
+          children: "Home"
+        }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          href: "",
+          className: "nav-link-unselected"
+        }, {
+          children: "Favorites"
+        }), void 0)]
+      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+        className: "py-8"
+      }, {
+        children: "auto"
+      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+        className: "py-8"
+      }, {
+        children: "1fr"
+      }), void 0)]
+    }), void 0)
   }, void 0);
 };
 

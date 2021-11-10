@@ -38,3 +38,11 @@
 .link {
     @apply text-blue-500 transition hover:text-blue-700 font-medium;
 }
+
+.nav-link-selected {
+    @apply font-medium text-blue-500 bg-blue-50 pl-4 pr-8 py-1 rounded-r-lg;
+}
+
+.nav-link-unselected {
+    @apply link  pl-4 pr-8 py-1;
+}

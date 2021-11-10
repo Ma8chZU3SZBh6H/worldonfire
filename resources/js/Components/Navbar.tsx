@@ -8,10 +8,12 @@ function Navbar() {
 
     return (
         <nav className=" shadow-md">
-            <div className="max-w-7xl flex justify-between px-2 py-1 mx-auto">
+            <div className=" flex justify-between px-2 py-1  items-center">
                 <div className="flex items-center gap-3">
-                    <i className="fas fa-bars tex"></i>
-                    <h1 className="text-2xl">
+                    <div className="transition text-gray-700 hover:text-blue-700 cursor-pointer">
+                        <i className="fas fa-bars fa-lg"></i>
+                    </div>
+                    <h1 className="text-2xl font-bold text-gray-700">
                         <Link href="/">WorldOnFire</Link>
                     </h1>
                 </div>

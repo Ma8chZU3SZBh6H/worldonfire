@@ -21,7 +21,7 @@ function Register() {
     };
     return (
         <Main>
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-8">
                 <form onSubmit={formHandler} className="form">
                     <h1 className="form-title">Register</h1>
                     <Input name="name" label="Full name" hint="Floof Waffle" />
