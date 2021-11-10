@@ -2992,6 +2992,28 @@ var navConstants;
 
 /***/ }),
 
+/***/ "./resources/js/State/Constants/newsConstants.ts":
+/*!*******************************************************!*\
+  !*** ./resources/js/State/Constants/newsConstants.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.newsConstants = void 0;
+var newsConstants;
+
+(function (newsConstants) {
+  newsConstants["SELECT"] = "SELECT";
+  newsConstants["SET_NEWS"] = "SET_NEWS";
+})(newsConstants = exports.newsConstants || (exports.newsConstants = {}));
+
+/***/ }),
+
 /***/ "./resources/js/State/Reducers/navReducer.ts":
 /*!***************************************************!*\
   !*** ./resources/js/State/Reducers/navReducer.ts ***!
@@ -3047,6 +3069,67 @@ exports["default"] = navReducer;
 
 /***/ }),
 
+/***/ "./resources/js/State/Reducers/newsReducer.ts":
+/*!****************************************************!*\
+  !*** ./resources/js/State/Reducers/newsReducer.ts ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./resources/js/State/Constants/newsConstants.ts");
+
+var defaultState = {
+  news: [],
+  selected: 0
+};
+
+function newsReducer(state, action) {
+  if (state === void 0) {
+    state = defaultState;
+  }
+
+  switch (action.type) {
+    case newsConstants_1.newsConstants.SELECT:
+      return __assign(__assign({}, state), {
+        selected: action.payload
+      });
+
+    case newsConstants_1.newsConstants.SET_NEWS:
+      return __assign(__assign({}, state), {
+        news: action.payload
+      });
+
+    default:
+      return state;
+  }
+}
+
+exports["default"] = newsReducer;
+
+/***/ }),
+
 /***/ "./resources/js/State/Reducers/reducers.ts":
 /*!*************************************************!*\
   !*** ./resources/js/State/Reducers/reducers.ts ***!
@@ -3071,8 +3154,11 @@ var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js
 
 var navReducer_1 = __importDefault(__webpack_require__(/*! ./navReducer */ "./resources/js/State/Reducers/navReducer.ts"));
 
+var newsReducer_1 = __importDefault(__webpack_require__(/*! ./newsReducer */ "./resources/js/State/Reducers/newsReducer.ts"));
+
 exports.reducers = (0, redux_1.combineReducers)({
-  nav: navReducer_1["default"]
+  nav: navReducer_1["default"],
+  news: newsReducer_1["default"]
 });
 
 /***/ }),
