@@ -1,3 +1,4 @@
+import { Article } from "../../types/Article";
 import { newsConstants } from "../Constants/newsConstants";
 
 export function newsActionSelect(id: number) {
@@ -7,7 +8,7 @@ export function newsActionSelect(id: number) {
     };
 }
 
-export function newsActionSetNews(news: Array<Object>) {
+export function newsActionSetNews(news: Array<Article> | unknown) {
     return {
         type: newsConstants.SET_NEWS,
         payload: news,

@@ -1,4 +1,4 @@
-import { TypeReduxAction } from "../../types";
+import { TypeReduxAction } from "../../types/Types";
 import { navConstants } from "../Constants/navConstants";
 
 const defaultState = {

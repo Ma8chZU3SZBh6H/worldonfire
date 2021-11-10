@@ -4,7 +4,7 @@ import React from "react";
 import InputSubmit from "../Components/InputSubmit";
 import Input from "../Components/Input";
 import Main from "../Layouts/Main";
-import { TypeFormRegister } from "../types";
+import { TypeFormRegister } from "../types/Types";
 import useInputs from "../Hooks/useInputs";
 
 function Register() {

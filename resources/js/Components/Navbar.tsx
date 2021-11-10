@@ -2,7 +2,7 @@ import { Inertia, Page, PageProps } from "@inertiajs/inertia";
 import { Link, usePage } from "@inertiajs/inertia-react";
 import React from "react";
 import useNav from "../Hooks/useNav";
-import { TypePageProps } from "../types";
+import { TypePageProps } from "../types/Types";
 
 function Navbar() {
     const props = usePage<Page<TypePageProps>>().props;

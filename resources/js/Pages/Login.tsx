@@ -4,7 +4,7 @@ import InputCheck from "../Components/InputCheck";
 import Input from "../Components/Input";
 import Main from "../Layouts/Main";
 import React from "react";
-import { TypeFormLogin } from "../types";
+import { TypeFormLogin } from "../types/Types";
 import { Inertia } from "@inertiajs/inertia";
 import useInputs from "../Hooks/useInputs";
 

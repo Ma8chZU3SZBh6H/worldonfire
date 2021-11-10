@@ -1,4 +1,4 @@
-import { TypeInputCheckbox } from "../types";
+import { TypeInputCheckbox } from "../types/Types";
 import Input from "./Input";
 import InputLabel from "./InputLabel";
 

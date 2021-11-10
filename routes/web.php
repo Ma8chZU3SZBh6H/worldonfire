@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\NewsApi;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -24,3 +25,10 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
+
+
+Route::get("/test", function () {
+    $newsApi = new NewsApi();
+    $news = $newsApi->get_news();
+    dd($news);
+});

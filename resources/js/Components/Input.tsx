@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/inertia-react";
-import { TypeInput } from "../types";
+import { TypeInput } from "../types/Types";
 import InputLabel from "./InputLabel";
 
 function Input({ type, className, label, name, hint }: TypeInput) {

@@ -1,5 +1,5 @@
 import { usePage } from "@inertiajs/inertia-react";
-import { TypeInputLabel } from "../types";
+import { TypeInputLabel } from "../types/Types";
 
 function InputLabel({ label, name }: TypeInputLabel) {
     const { errors } = usePage().props;

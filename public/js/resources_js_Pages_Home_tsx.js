@@ -175,6 +175,89 @@ exports["default"] = useNav;
 
 /***/ }),
 
+/***/ "./resources/js/Hooks/useNews.ts":
+/*!***************************************!*\
+  !*** ./resources/js/Hooks/useNews.ts ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var navActions = __importStar(__webpack_require__(/*! ../State/Actions/newsActions */ "./resources/js/State/Actions/newsActions.ts"));
+
+function useNews() {
+  var news = (0, react_redux_1.useSelector)(function (store) {
+    return store.news;
+  });
+  var dispatch = (0, react_redux_1.useDispatch)();
+  var actions = (0, redux_1.bindActionCreators)(navActions, dispatch);
+  return __assign({
+    news: news
+  }, actions);
+}
+
+exports["default"] = useNews;
+
+/***/ }),
+
 /***/ "./resources/js/Layouts/Main.tsx":
 /*!***************************************!*\
   !*** ./resources/js/Layouts/Main.tsx ***!
@@ -246,14 +329,27 @@ var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules
 
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
+
+var useNews_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNews */ "./resources/js/Hooks/useNews.ts"));
 
 var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resources/js/Layouts/Main.tsx"));
 
 var Home = function Home() {
   var nav = (0, useNav_1["default"])().nav;
+
+  var _a = (0, useNews_1["default"])(),
+      newsActionSetNews = _a.newsActionSetNews,
+      news = _a.news;
+
   var props = (0, inertia_react_1.usePage)().props;
-  console.log(props);
+  (0, react_1.useEffect)(function () {
+    if (props.news) {
+      newsActionSetNews(props.news);
+    }
+  }, [props.news]);
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: "grid gap-1 " + (nav.expanded ? "grid-cols-auto-1fr-2fr-home" : "grid-cols-1fr-2fr-home")
@@ -272,58 +368,37 @@ var Home = function Home() {
         }, {
           children: "Favorites"
         }), void 0)]
-      }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-8 px-4 flex flex-col gap-3"
       }, {
-        children: [(0, jsx_runtime_1.jsxs)("div", __assign({
-          className: "px-8 py-6 border rounded-md grid grid-cols-1fr-auto gap-y-4 bg-blue-50"
-        }, {
-          children: [(0, jsx_runtime_1.jsx)("p", __assign({
-            className: "font-medium text-lg"
+        children: news.news.map(function (article, index) {
+          return (0, jsx_runtime_1.jsxs)("div", __assign({
+            className: "px-8 py-6 border rounded-md grid grid-cols-1fr-auto gap-y-4 bg-blue-50"
           }, {
-            children: "ZipCharge Go Looks Like a Rolling Suitcase but It\u2019s Actually an Electric Vehicle Battery Pack"
-          }), void 0), (0, jsx_runtime_1.jsx)("div", {
-            className: "bg-test bg-cover bg-center h-20 w-20 rounded"
-          }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-            className: "col-span-2 flex justify-between "
-          }, {
-            children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the German, Italian and even\u2026\\nThe post ZipCharge Go Looks Like a R\u2026"
-          }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-            className: "col-span-2 flex justify-between "
-          }, {
-            children: [(0, jsx_runtime_1.jsx)("div", {
-              children: "2021-11-10T15:04:07Z"
-            }, void 0), (0, jsx_runtime_1.jsx)("div", {
-              children: "By Ben Dahl"
-            }, void 0)]
-          }), void 0)]
-        }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-          className: "px-8 py-6 border rounded-md grid grid-cols-1fr-auto gap-y-4"
-        }, {
-          children: [(0, jsx_runtime_1.jsx)("p", __assign({
-            className: "font-medium text-lg"
-          }, {
-            children: "ZipCharge Go Looks Like a Rolling Suitcase but It\u2019s Actually an Electric Vehicle Battery Pack"
-          }), void 0), (0, jsx_runtime_1.jsx)("div", {
-            className: "bg-test bg-cover bg-center h-20 w-20 rounded"
-          }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-            className: "col-span-2 flex justify-between "
-          }, {
-            children: "Less than a handful of years ago\u2013what feels like yesterday\u2013the \u201Cfastest car in the world\u201D placard was a constantly changing achievement that switched hands between the latest and greatest from the German, Italian and even\u2026\\nThe post ZipCharge Go Looks Like a R\u2026"
-          }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-            className: "col-span-2 flex justify-between "
-          }, {
-            children: [(0, jsx_runtime_1.jsx)("div", {
-              children: "2021-11-10T15:04:07Z"
-            }, void 0), (0, jsx_runtime_1.jsxs)("div", {
-              children: ["By ", (0, jsx_runtime_1.jsx)("span", __assign({
-                className: "font-medium"
-              }, {
-                children: "Ben Dahl"
-              }), void 0)]
-            }, void 0)]
-          }), void 0)]
-        }), void 0)]
+            children: [(0, jsx_runtime_1.jsx)("p", __assign({
+              className: "font-medium text-lg"
+            }, {
+              children: article.title
+            }), void 0), (0, jsx_runtime_1.jsx)("div", {
+              className: "bg-cover bg-center h-20 w-20 rounded",
+              style: {
+                backgroundImage: "url(\"" + article.urlToImage + "\")"
+              }
+            }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+              className: "col-span-2 flex justify-between "
+            }, {
+              children: article.description
+            }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+              className: "col-span-2 flex justify-between "
+            }, {
+              children: [(0, jsx_runtime_1.jsx)("div", {
+                children: article.publishedAt
+              }, void 0), (0, jsx_runtime_1.jsxs)("div", {
+                children: ["By ", article.author]
+              }, void 0)]
+            }), void 0)]
+          }), void 0);
+        })
       }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-8 px-4"
       }, {
@@ -395,6 +470,41 @@ function navActionToggle() {
 }
 
 exports.navActionToggle = navActionToggle;
+
+/***/ }),
+
+/***/ "./resources/js/State/Actions/newsActions.ts":
+/*!***************************************************!*\
+  !*** ./resources/js/State/Actions/newsActions.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.newsActionSetNews = exports.newsActionSelect = void 0;
+
+var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./resources/js/State/Constants/newsConstants.ts");
+
+function newsActionSelect(id) {
+  return {
+    type: newsConstants_1.newsConstants.SELECT,
+    payload: id
+  };
+}
+
+exports.newsActionSelect = newsActionSelect;
+
+function newsActionSetNews(news) {
+  return {
+    type: newsConstants_1.newsConstants.SET_NEWS,
+    payload: news
+  };
+}
+
+exports.newsActionSetNews = newsActionSetNews;
 
 /***/ }),
 

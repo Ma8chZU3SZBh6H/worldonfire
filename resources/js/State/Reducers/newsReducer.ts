@@ -1,4 +1,4 @@
-import { TypeReduxAction } from "../../types";
+import { TypeReduxAction } from "../../types/Types";
 import { newsConstants } from "../Constants/newsConstants";
 
 const defaultState = {
