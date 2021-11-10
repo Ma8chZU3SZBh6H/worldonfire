@@ -1,15 +1,14 @@
-import React from "react";
+import { usePage } from "@inertiajs/inertia-react";
 import Navbar from "../Components/Navbar";
+import Main from "../Layouts/Main";
 
 const Home = () => {
-    let foo: string = "React";
-    const bar: string = "TypeScript";
-
+    const props = usePage().props;
+    console.log(props);
     return (
-        <div>
-            <Navbar />
+        <Main>
             <div>Home</div>
-        </div>
+        </Main>
     );
 };
 

@@ -1,5 +1,155 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Home_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Register_tsx"],{
+
+/***/ "./resources/js/Components/Input.tsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Components/Input.tsx ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var InputLabel_1 = __importDefault(__webpack_require__(/*! ./InputLabel */ "./resources/js/Components/InputLabel.tsx"));
+
+function Input(_a) {
+  var type = _a.type,
+      className = _a.className,
+      label = _a.label,
+      name = _a.name,
+      hint = _a.hint;
+  return (0, jsx_runtime_1.jsxs)("div", __assign({
+    className: "from-group"
+  }, {
+    children: [(0, jsx_runtime_1.jsx)("div", __assign({
+      className: "flex flex-col py-1 px-2"
+    }, {
+      children: (0, jsx_runtime_1.jsx)(InputLabel_1["default"], {
+        name: name,
+        label: label
+      }, void 0)
+    }), void 0), (0, jsx_runtime_1.jsx)("input", {
+      id: name,
+      name: name,
+      placeholder: hint,
+      className: "input " + className,
+      type: type !== null && type !== void 0 ? type : "text"
+    }, void 0)]
+  }), void 0);
+}
+
+exports["default"] = Input;
+
+/***/ }),
+
+/***/ "./resources/js/Components/InputLabel.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/Components/InputLabel.tsx ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+function InputLabel(_a) {
+  var label = _a.label,
+      name = _a.name;
+  var errors = (0, inertia_react_1.usePage)().props.errors;
+  return (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
+    children: [label ? (0, jsx_runtime_1.jsx)("label", __assign({
+      className: "label",
+      htmlFor: name
+    }, {
+      children: label
+    }), void 0) : "", errors[name !== null && name !== void 0 ? name : "empty"] ? (0, jsx_runtime_1.jsx)("label", __assign({
+      className: "label-error",
+      htmlFor: name
+    }, {
+      children: errors[name !== null && name !== void 0 ? name : "empty"]
+    }), void 0) : ""]
+  }, void 0);
+}
+
+exports["default"] = InputLabel;
+
+/***/ }),
+
+/***/ "./resources/js/Components/InputSubmit.tsx":
+/*!*************************************************!*\
+  !*** ./resources/js/Components/InputSubmit.tsx ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+function InputSubmit(_a) {
+  var value = _a.value;
+  return (0, jsx_runtime_1.jsx)("input", {
+    className: "btn-submit",
+    type: "submit",
+    value: value
+  }, void 0);
+}
+
+exports["default"] = InputSubmit;
+
+/***/ }),
 
 /***/ "./resources/js/Components/Navbar.tsx":
 /*!********************************************!*\
@@ -76,6 +226,26 @@ exports["default"] = Navbar;
 
 /***/ }),
 
+/***/ "./resources/js/Hooks/useInputs.ts":
+/*!*****************************************!*\
+  !*** ./resources/js/Hooks/useInputs.ts ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+function useInputs(e) {
+  return e.target;
+}
+
+exports["default"] = useInputs;
+
+/***/ }),
+
 /***/ "./resources/js/Layouts/Main.tsx":
 /*!***************************************!*\
   !*** ./resources/js/Layouts/Main.tsx ***!
@@ -129,13 +299,29 @@ exports["default"] = Main;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/Pages/Register.tsx":
+/*!*****************************************!*\
+  !*** ./resources/js/Pages/Register.tsx ***!
+  \*****************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
 
 var __importDefault = this && this.__importDefault || function (mod) {
   return mod && mod.__esModule ? mod : {
@@ -149,21 +335,78 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var InputSubmit_1 = __importDefault(__webpack_require__(/*! ../Components/InputSubmit */ "./resources/js/Components/InputSubmit.tsx"));
+
+var Input_1 = __importDefault(__webpack_require__(/*! ../Components/Input */ "./resources/js/Components/Input.tsx"));
 
 var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resources/js/Layouts/Main.tsx"));
 
-var Home = function Home() {
-  var props = (0, inertia_react_1.usePage)().props;
-  console.log(props);
-  return (0, jsx_runtime_1.jsx)(Main_1["default"], {
-    children: (0, jsx_runtime_1.jsx)("div", {
-      children: "Home"
-    }, void 0)
-  }, void 0);
-};
+var useInputs_1 = __importDefault(__webpack_require__(/*! ../Hooks/useInputs */ "./resources/js/Hooks/useInputs.ts"));
 
-exports["default"] = Home;
+function Register() {
+  var formHandler = function formHandler(e) {
+    e.preventDefault();
+
+    var _a = (0, useInputs_1["default"])(e),
+        email = _a.email,
+        name = _a.name,
+        password = _a.password,
+        password_confirmation = _a.password_confirmation;
+
+    inertia_1.Inertia.post("/register", {
+      email: email.value,
+      name: name.value,
+      password: password.value,
+      password_confirmation: password_confirmation.value
+    });
+  };
+
+  return (0, jsx_runtime_1.jsx)(Main_1["default"], {
+    children: (0, jsx_runtime_1.jsx)("div", __assign({
+      className: "flex justify-center"
+    }, {
+      children: (0, jsx_runtime_1.jsxs)("form", __assign({
+        onSubmit: formHandler,
+        className: "form"
+      }, {
+        children: [(0, jsx_runtime_1.jsx)("h1", __assign({
+          className: "form-title"
+        }, {
+          children: "Register"
+        }), void 0), (0, jsx_runtime_1.jsx)(Input_1["default"], {
+          name: "name",
+          label: "Full name",
+          hint: "Floof Waffle"
+        }, void 0), (0, jsx_runtime_1.jsx)(Input_1["default"], {
+          name: "email",
+          label: "Your email",
+          hint: "Floof@email.com"
+        }, void 0), (0, jsx_runtime_1.jsx)(Input_1["default"], {
+          name: "password",
+          label: "Your password",
+          type: "password"
+        }, void 0), (0, jsx_runtime_1.jsx)(Input_1["default"], {
+          name: "password_confirmation",
+          label: "Confirm password",
+          type: "password"
+        }, void 0), (0, jsx_runtime_1.jsx)(InputSubmit_1["default"], {
+          value: "Register"
+        }, void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          className: "link",
+          href: "/login"
+        }, {
+          children: "Login Instead"
+        }), void 0)]
+      }), void 0)
+    }), void 0)
+  }, void 0);
+}
+
+exports["default"] = Register;
 
 /***/ }),
 

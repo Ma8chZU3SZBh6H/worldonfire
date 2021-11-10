@@ -1,7 +1,11 @@
-import { Link } from "@inertiajs/inertia-react";
+import { Inertia, Page, PageProps } from "@inertiajs/inertia";
+import { Link, usePage } from "@inertiajs/inertia-react";
 import React from "react";
+import { TypePageProps } from "../types";
 
 function Navbar() {
+    const props = usePage<Page<TypePageProps>>().props;
+
     return (
         <nav className=" shadow-md">
             <div className="max-w-7xl flex justify-between px-2 py-1 mx-auto">
@@ -12,7 +16,13 @@ function Navbar() {
                     </h1>
                 </div>
                 <div>
-                    <Link href="/login">Sign In</Link>
+                    {props.user ? (
+                        <Link className="link" href="/logout" method="post">
+                            Logout
+                        </Link>
+                    ) : (
+                        <Link href="/login">Sign in</Link>
+                    )}
                 </div>
             </div>
         </nav>

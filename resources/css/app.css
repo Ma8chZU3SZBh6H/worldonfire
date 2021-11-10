@@ -6,3 +6,35 @@
 @import "~@fortawesome/fontawesome-free/css/regular";
 @import "~@fortawesome/fontawesome-free/css/solid";
 @import "~@fortawesome/fontawesome-free/css/brands";
+
+.form {
+    @apply flex flex-col gap-6 px-8 py-8 shadow-md rounded;
+}
+
+.from-group {
+    @apply flex flex-col gap-1  rounded;
+}
+
+.form-title {
+    @apply text-gray-700 font-bold text-3xl mb-2;
+}
+
+.label {
+    @apply text-gray-700 font-medium;
+}
+
+.label-error {
+    @apply text-red-700 font-medium;
+}
+
+.input {
+    @apply border rounded py-1 px-2 border-gray-100;
+}
+
+.btn-submit {
+    @apply py-1 text-lg rounded bg-blue-500 text-white font-bold transition hover:bg-blue-700 cursor-pointer;
+}
+
+.link {
+    @apply text-blue-500 transition hover:text-blue-700 font-medium;
+}
