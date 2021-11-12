@@ -116,7 +116,7 @@ function ArticleComponent(_a) {
         children: "Share"
       }), void 0)]
     }, void 0)]
-  }), index);
+  }), void 0);
 }
 
 exports["default"] = ArticleComponent;
@@ -227,6 +227,81 @@ exports["default"] = ArticleSection;
 
 /***/ }),
 
+/***/ "./resources/js/Components/Nav.tsx":
+/*!*****************************************!*\
+  !*** ./resources/js/Components/Nav.tsx ***!
+  \*****************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
+
+function Nav() {
+  var nav = (0, useNav_1["default"])().nav;
+  var url = (0, inertia_react_1.usePage)().url;
+  console.log(url);
+
+  var isSelected = function isSelected(page) {
+    if (url == page) {
+      return "nav-link-selected ";
+    } else {
+      return "nav-link-unselected ";
+    }
+  };
+
+  return (0, jsx_runtime_1.jsxs)("div", __assign({
+    className: "flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white h-screen shadow-md"
+  }, {
+    children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+      href: "/",
+      className: "text-xl  whitespace-nowrap " + isSelected("/")
+    }, {
+      children: "Top Headlines"
+    }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+      href: "/favorites",
+      className: "text-xl whitespace-nowrap " + isSelected("/favorites")
+    }, {
+      children: "Favorites"
+    }), void 0)]
+  }), void 0);
+}
+
+exports["default"] = Nav;
+
+/***/ }),
+
 /***/ "./resources/js/Components/Navbar.tsx":
 /*!********************************************!*\
   !*** ./resources/js/Components/Navbar.tsx ***!
@@ -272,7 +347,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md"
+    className: " shadow-md relative z-10"
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
@@ -576,7 +651,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
 
@@ -586,6 +661,8 @@ var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resou
 
 var ArticleComponent_1 = __importDefault(__webpack_require__(/*! ../Components/ArticleComponent */ "./resources/js/Components/ArticleComponent.tsx"));
 
+var Nav_1 = __importDefault(__webpack_require__(/*! ../Components/Nav */ "./resources/js/Components/Nav.tsx"));
+
 var Home = function Home() {
   var nav = (0, useNav_1["default"])().nav;
 
@@ -594,32 +671,22 @@ var Home = function Home() {
       news = _a.news,
       newsActionSelect = _a.newsActionSelect;
 
+  var _b = (0, react_1.useState)("Top Headlines"),
+      title = _b[0],
+      setTitle = _b[1];
+
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: " gap-1 flex"
+      className: " gap-1 flex relative"
     }, {
-      children: [nav.expanded && (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: "flex flex-col gap-3 py-4"
-      }, {
-        children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          href: "",
-          className: "nav-link-selected"
-        }, {
-          children: "Home"
-        }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          href: "",
-          className: "nav-link-unselected"
-        }, {
-          children: "Favorites"
-        }), void 0)]
-      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+      children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
       }, {
         children: news.news.map(function (article, index) {
           return (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
             article: article,
             index: index + 1
-          }, void 0);
+          }, index);
         })
       }), void 0)]
     }), void 0)
@@ -642,7 +709,7 @@ exports["default"] = Home;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.navActionToggle = void 0;
+exports.navActionSelect = exports.navActionToggle = void 0;
 
 var navConstants_1 = __webpack_require__(/*! ../Constants/navConstants */ "./resources/js/State/Constants/navConstants.ts");
 
@@ -653,6 +720,14 @@ function navActionToggle() {
 }
 
 exports.navActionToggle = navActionToggle;
+
+function navActionSelect() {
+  return {
+    type: navConstants_1.navConstants.SELECT
+  };
+}
+
+exports.navActionSelect = navActionSelect;
 
 /***/ }),
 

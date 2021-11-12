@@ -12,7 +12,6 @@ function ArticleComponent({ index, article }: TypeArticle) {
     return (
         <div
             onClick={() => newsActionSelect(selected)}
-            key={index}
             className={`px-8 py-6 border rounded-md flex flex-col gap-3 transition max-w-2xl  ${
                 news.selected == selected || !index
                     ? "bg-blue-50"

@@ -5,3 +5,9 @@ export function navActionToggle() {
         type: navConstants.TOGGLE,
     };
 }
+
+export function navActionSelect() {
+    return {
+        type: navConstants.SELECT,
+    };
+}

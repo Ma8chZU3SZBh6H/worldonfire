@@ -116,7 +116,7 @@ function ArticleComponent(_a) {
         children: "Share"
       }), void 0)]
     }, void 0)]
-  }), index);
+  }), void 0);
 }
 
 exports["default"] = ArticleComponent;
@@ -272,7 +272,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md"
+    className: " shadow-md relative z-10"
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
@@ -630,7 +630,7 @@ exports["default"] = Article;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.navActionToggle = void 0;
+exports.navActionSelect = exports.navActionToggle = void 0;
 
 var navConstants_1 = __webpack_require__(/*! ../Constants/navConstants */ "./resources/js/State/Constants/navConstants.ts");
 
@@ -641,6 +641,14 @@ function navActionToggle() {
 }
 
 exports.navActionToggle = navActionToggle;
+
+function navActionSelect() {
+  return {
+    type: navConstants_1.navConstants.SELECT
+  };
+}
+
+exports.navActionSelect = navActionSelect;
 
 /***/ }),
 

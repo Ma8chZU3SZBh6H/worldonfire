@@ -2988,6 +2988,7 @@ var navConstants;
 
 (function (navConstants) {
   navConstants["TOGGLE"] = "TOGGLE";
+  navConstants["SELECT"] = "SELECT";
 })(navConstants = exports.navConstants || (exports.navConstants = {}));
 
 /***/ }),

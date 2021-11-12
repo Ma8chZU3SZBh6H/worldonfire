@@ -8,7 +8,7 @@ function Navbar() {
     const props = usePage<Page<TypePageProps>>().props;
     const { navActionToggle } = useNav();
     return (
-        <nav className=" shadow-md">
+        <nav className=" shadow-md relative z-10">
             <div className=" flex justify-between px-4 py-4  items-center">
                 <div className="flex items-center gap-3">
                     <button

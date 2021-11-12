@@ -18,4 +18,12 @@ class HomeController extends Controller
             'news' => $newsApi->news
         ]);
     }
+
+    public function show()
+    {
+        $newsApi = new NewsApi('homenews');
+        return Inertia::render('Home', [
+            'news' => $newsApi->news
+        ]);
+    }
 }
