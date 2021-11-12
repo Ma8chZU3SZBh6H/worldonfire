@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $newsApi = new NewsApi();
+        $newsApi = new NewsApi('homenews');
 
         return Inertia::render('Home', [
             'news' => $newsApi->news

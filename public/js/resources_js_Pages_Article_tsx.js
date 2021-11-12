@@ -1,4 +1,4 @@
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Home_tsx"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Article_tsx"],{
 
 /***/ "./resources/js/Components/ArticleComponent.tsx":
 /*!******************************************************!*\
@@ -539,10 +539,10 @@ exports["default"] = Main;
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Home.tsx":
-/*!*************************************!*\
-  !*** ./resources/js/Pages/Home.tsx ***!
-  \*************************************/
+/***/ "./resources/js/Pages/Article.tsx":
+/*!****************************************!*\
+  !*** ./resources/js/Pages/Article.tsx ***!
+  \****************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -576,9 +576,7 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
-var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var useNews_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNews */ "./resources/js/Hooks/useNews.ts"));
 
@@ -586,47 +584,37 @@ var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resou
 
 var ArticleComponent_1 = __importDefault(__webpack_require__(/*! ../Components/ArticleComponent */ "./resources/js/Components/ArticleComponent.tsx"));
 
-var Home = function Home() {
-  var nav = (0, useNav_1["default"])().nav;
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
-  var _a = (0, useNews_1["default"])(),
-      newsActionSetNews = _a.newsActionSetNews,
-      news = _a.news,
-      newsActionSelect = _a.newsActionSelect;
+function Article() {
+  var _a = (0, react_1.useState)(null),
+      article = _a[0],
+      setArticle = _a[1];
 
+  var page = (0, inertia_react_1.usePage)();
+
+  var _b = (0, useNews_1["default"])(),
+      newsActionSetNews = _b.newsActionSetNews,
+      news = _b.news;
+
+  (0, react_1.useEffect)(function () {
+    if (news.news && news.news.length > 0) {
+      setArticle(news.news[0]);
+    }
+  }, [news.news]);
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
-    children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: " gap-1 flex"
+    children: (0, jsx_runtime_1.jsx)("div", __assign({
+      className: "flex justify-center py-4 gap-3"
     }, {
-      children: [nav.expanded && (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: "flex flex-col gap-3 py-4"
-      }, {
-        children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          href: "",
-          className: "nav-link-selected"
-        }, {
-          children: "Home"
-        }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          href: "",
-          className: "nav-link-unselected"
-        }, {
-          children: "Favorites"
-        }), void 0)]
-      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-        className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
-      }, {
-        children: news.news.map(function (article, index) {
-          return (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
-            article: article,
-            index: index + 1
-          }, void 0);
-        })
-      }), void 0)]
+      children: article ? (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
+        article: article,
+        index: 0
+      }, void 0) : "Loading..."
     }), void 0)
   }, void 0);
-};
+}
 
-exports["default"] = Home;
+exports["default"] = Article;
 
 /***/ }),
 

@@ -1,4 +1,4 @@
-import { ReactChildren } from "react";
+import { ReactChild, ReactChildren } from "react";
 import { Article } from "./Article";
 import { User } from "./User";
 
@@ -31,6 +31,24 @@ export interface TypeInputLabel {
     label?: string;
 }
 
+export interface TypeArticle {
+    index?: number;
+    article: Article;
+}
+
+export interface TypeArticleSection {
+    children: any;
+    className?: string;
+    index?: number;
+    expanded?: boolean;
+}
+
+export interface TypeArticleHeader {
+    children: any;
+    url: string | null;
+    className?: string;
+}
+
 //forms
 
 export interface TypeFormRegister {
@@ -59,4 +77,11 @@ export interface TypePageProps {
 export interface TypeReduxAction {
     type: string;
     payload: any;
+}
+
+//redux states
+
+export interface TypeNewsState {
+    news: Array<Article>;
+    selected: Number;
 }

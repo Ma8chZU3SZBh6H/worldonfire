@@ -40485,6 +40485,14 @@ module.exports = function getSideChannel() {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
+	"./Article": [
+		"./resources/js/Pages/Article.tsx",
+		"resources_js_Pages_Article_tsx"
+	],
+	"./Article.tsx": [
+		"./resources/js/Pages/Article.tsx",
+		"resources_js_Pages_Article_tsx"
+	],
 	"./Home": [
 		"./resources/js/Pages/Home.tsx",
 		"resources_js_Pages_Home_tsx"
@@ -40829,7 +40837,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_Home_tsx":1,"resources_js_Pages_Login_tsx":1,"resources_js_Pages_Register_tsx":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_Article_tsx":1,"resources_js_Pages_Home_tsx":1,"resources_js_Pages_Login_tsx":1,"resources_js_Pages_Register_tsx":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

@@ -1,7 +1,7 @@
-import { TypeReduxAction } from "../../types/Types";
+import { TypeNewsState, TypeReduxAction } from "../../types/Types";
 import { newsConstants } from "../Constants/newsConstants";
 
-const defaultState = {
+const defaultState: TypeNewsState = {
     news: [],
     selected: 0,
 };

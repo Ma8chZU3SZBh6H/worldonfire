@@ -345,6 +345,89 @@ exports["default"] = useNav;
 
 /***/ }),
 
+/***/ "./resources/js/Hooks/useNews.ts":
+/*!***************************************!*\
+  !*** ./resources/js/Hooks/useNews.ts ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+var __createBinding = this && this.__createBinding || (Object.create ? function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  Object.defineProperty(o, k2, {
+    enumerable: true,
+    get: function get() {
+      return m[k];
+    }
+  });
+} : function (o, m, k, k2) {
+  if (k2 === undefined) k2 = k;
+  o[k2] = m[k];
+});
+
+var __setModuleDefault = this && this.__setModuleDefault || (Object.create ? function (o, v) {
+  Object.defineProperty(o, "default", {
+    enumerable: true,
+    value: v
+  });
+} : function (o, v) {
+  o["default"] = v;
+});
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) {
+    if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+  }
+
+  __setModuleDefault(result, mod);
+
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var react_redux_1 = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+var redux_1 = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+
+var navActions = __importStar(__webpack_require__(/*! ../State/Actions/newsActions */ "./resources/js/State/Actions/newsActions.ts"));
+
+function useNews() {
+  var news = (0, react_redux_1.useSelector)(function (store) {
+    return store.news;
+  });
+  var dispatch = (0, react_redux_1.useDispatch)();
+  var actions = (0, redux_1.bindActionCreators)(navActions, dispatch);
+  return __assign({
+    news: news
+  }, actions);
+}
+
+exports["default"] = useNews;
+
+/***/ }),
+
 /***/ "./resources/js/Layouts/Main.tsx":
 /*!***************************************!*\
   !*** ./resources/js/Layouts/Main.tsx ***!
@@ -365,10 +448,28 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
 var Navbar_1 = __importDefault(__webpack_require__(/*! ../Components/Navbar */ "./resources/js/Components/Navbar.tsx"));
+
+var useNews_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNews */ "./resources/js/Hooks/useNews.ts"));
 
 function Main(_a) {
   var children = _a.children;
+  var props = (0, inertia_react_1.usePage)().props;
+
+  var _b = (0, useNews_1["default"])(),
+      newsActionSetNews = _b.newsActionSetNews,
+      news = _b.news;
+
+  (0, react_1.useEffect)(function () {
+    if (props.news) {
+      console.log(props.news);
+      newsActionSetNews(props.news);
+    }
+  }, [props.news]);
   return (0, jsx_runtime_1.jsxs)("div", {
     children: [(0, jsx_runtime_1.jsx)(Navbar_1["default"], {}, void 0), children]
   }, void 0);
@@ -511,6 +612,41 @@ function navActionToggle() {
 }
 
 exports.navActionToggle = navActionToggle;
+
+/***/ }),
+
+/***/ "./resources/js/State/Actions/newsActions.ts":
+/*!***************************************************!*\
+  !*** ./resources/js/State/Actions/newsActions.ts ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.newsActionSetNews = exports.newsActionSelect = void 0;
+
+var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./resources/js/State/Constants/newsConstants.ts");
+
+function newsActionSelect(id) {
+  return {
+    type: newsConstants_1.newsConstants.SELECT,
+    payload: id
+  };
+}
+
+exports.newsActionSelect = newsActionSelect;
+
+function newsActionSetNews(news) {
+  return {
+    type: newsConstants_1.newsConstants.SET_NEWS,
+    payload: news
+  };
+}
+
+exports.newsActionSetNews = newsActionSetNews;
 
 /***/ }),
 
