@@ -52,7 +52,7 @@ function ArticleFullComponent(_a) {
     className: "px-8 py-6 max-w-2xl border rounded-md flex flex-col gap-3"
   }, {
     children: [(0, jsx_runtime_1.jsxs)("p", {
-      children: ["Published", (0, jsx_runtime_1.jsx)("span", __assign({
+      children: ["Published", " ", (0, jsx_runtime_1.jsx)("span", __assign({
         className: "font-bold"
       }, {
         children: (0, moment_1["default"])(article.publishedAt).fromNow()

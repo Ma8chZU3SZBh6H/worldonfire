@@ -9,7 +9,7 @@ function ArticleFullComponent({ article }: TypeFullArticle) {
     return (
         <div className="px-8 py-6 max-w-2xl border rounded-md flex flex-col gap-3">
             <p>
-                Published
+                Published{" "}
                 <span className="font-bold">
                     {moment(article.publishedAt).fromNow()}
                 </span>
