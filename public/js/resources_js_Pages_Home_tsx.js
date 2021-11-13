@@ -95,7 +95,7 @@ function ArticleComponent(_a) {
       expanded: index ? false : true
     }, {
       children: (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: "flex flex-col gap-3"
+        className: "flex flex-col gap-3 w-full"
       }, {
         children: [(0, jsx_runtime_1.jsx)("div", __assign({
           className: ""
@@ -118,9 +118,9 @@ function ArticleComponent(_a) {
         }, {
           children: [(0, jsx_runtime_1.jsx)("button", __assign({
             onClick: toggleFavorite,
-            className: isFavorite ? "btn-fav" : "btn-unfav"
+            className: isFavorite ? "btn-unfav" : "btn-fav"
           }, {
-            children: isFavorite ? "Favorite" : "Favorited"
+            children: isFavorite ? "Favorited" : "Favorite"
           }), void 0), (0, jsx_runtime_1.jsx)("button", __assign({
             onClick: open,
             className: "link bg-transparent"

@@ -45,7 +45,7 @@ function ArticleComponent({ index, article }: TypeArticle) {
             <ArticleSection>{article.description}</ArticleSection>
 
             <ArticleSection index={selected} expanded={index ? false : true}>
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 w-full">
                     <div className="">{article.content}</div>
 
                     <div className="flex justify-between ga">
@@ -57,9 +57,9 @@ function ArticleComponent({ index, article }: TypeArticle) {
                     <div className="flex justify-between">
                         <button
                             onClick={toggleFavorite}
-                            className={isFavorite ? "btn-fav" : "btn-unfav"}
+                            className={isFavorite ? "btn-unfav" : "btn-fav"}
                         >
-                            {isFavorite ? "Favorite" : "Favorited"}
+                            {isFavorite ? "Favorited" : "Favorite"}
                         </button>
                         <button onClick={open} className="link bg-transparent">
                             Open
