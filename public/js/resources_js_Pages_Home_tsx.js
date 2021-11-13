@@ -59,28 +59,31 @@ function ArticleComponent(_a) {
   var favorite = news.favs.filter(function (fav) {
     return fav.title == article.title;
   }).length > 0 ? true : false;
+  var article_remaped = {
+    source_id: article.source.id,
+    source_name: article.source.name,
+    author: article.author,
+    title: article.title,
+    description: article.description,
+    url: article.url,
+    url_img: article.urlToImage,
+    published_at: article.publishedAt,
+    content: article.content
+  };
 
   var favoriteHandler = function favoriteHandler(e) {
     e.preventDefault();
-    inertia_1.Inertia.post("/article/favorite", {
-      source_id: article.source.id,
-      source_name: article.source.name,
-      author: article.author,
-      title: article.title,
-      description: article.description,
-      url: article.url,
-      url_img: article.urlToImage,
-      published_at: article.publishedAt,
-      content: article.content
-    });
+    inertia_1.Inertia.post("/article/favorite", article_remaped);
   };
 
   var unfavoriteHandler = function unfavoriteHandler(e) {
     e.preventDefault();
-    inertia_1.Inertia.post("/article/unfavorite", {
-      title: article.title,
-      source_name: article.source.name
-    });
+    inertia_1.Inertia.post("/article/unfavorite", article_remaped);
+  };
+
+  var openHandler = function openHandler(e) {
+    e.preventDefault();
+    inertia_1.Inertia.post("/article/create", article_remaped);
   };
 
   return (0, jsx_runtime_1.jsxs)("div", __assign({
@@ -118,44 +121,44 @@ function ArticleComponent(_a) {
         className: ""
       }, {
         children: article.content
-      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+      }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
         className: "flex justify-between w-full"
       }, {
-        children: article.author && (0, jsx_runtime_1.jsxs)("div", {
+        children: [(0, jsx_runtime_1.jsx)("a", __assign({
+          target: "_blank",
+          className: "link",
+          href: article.url
+        }, {
+          children: article.source.name
+        }), void 0), article.author && (0, jsx_runtime_1.jsxs)("div", {
           children: ["By ", article.author]
-        }, void 0)
+        }, void 0)]
       }), void 0)]
     }), void 0), (0, jsx_runtime_1.jsxs)(ArticleSection_1["default"], {
-      children: [!favorite ? (0, jsx_runtime_1.jsxs)("form", __assign({
+      children: [!favorite ? (0, jsx_runtime_1.jsx)("form", __assign({
         onSubmit: favoriteHandler
       }, {
-        children: [(0, jsx_runtime_1.jsx)("input", {
-          name: "index",
-          type: "hidden",
-          value: index !== null && index !== void 0 ? index : 0
-        }, void 0), (0, jsx_runtime_1.jsx)("input", {
+        children: (0, jsx_runtime_1.jsx)("input", {
           value: "Favorite",
           className: "cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent",
           type: "submit"
-        }, void 0)]
-      }), void 0) : (0, jsx_runtime_1.jsxs)("form", __assign({
+        }, void 0)
+      }), void 0) : (0, jsx_runtime_1.jsx)("form", __assign({
         onSubmit: unfavoriteHandler
       }, {
-        children: [(0, jsx_runtime_1.jsx)("input", {
-          name: "index",
-          type: "hidden",
-          value: index !== null && index !== void 0 ? index : 0
-        }, void 0), (0, jsx_runtime_1.jsx)("input", {
+        children: (0, jsx_runtime_1.jsx)("input", {
           value: "Favorited",
           className: "cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white",
           type: "submit"
-        }, void 0)]
-      }), void 0), (0, jsx_runtime_1.jsx)("a", __assign({
-        target: "_blank",
-        className: "link",
-        href: article.url
+        }, void 0)
+      }), void 0), (0, jsx_runtime_1.jsx)("form", __assign({
+        onSubmit: openHandler
       }, {
-        children: article.source.name
+        children: (0, jsx_runtime_1.jsx)("input", {
+          value: "Open",
+          className: "link bg-transparent",
+          type: "submit"
+        }, void 0)
       }), void 0)]
     }, void 0)]
   }), void 0);

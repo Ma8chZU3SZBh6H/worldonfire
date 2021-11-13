@@ -17,26 +17,30 @@ function ArticleComponent({ index, article }: TypeArticle) {
         0
             ? true
             : false;
+
+    const article_remaped = {
+        source_id: article.source.id,
+        source_name: article.source.name,
+        author: article.author,
+        title: article.title,
+        description: article.description,
+        url: article.url,
+        url_img: article.urlToImage,
+        published_at: article.publishedAt,
+        content: article.content,
+    };
+
     const favoriteHandler = (e: React.FormEvent) => {
         e.preventDefault();
-        Inertia.post("/article/favorite", {
-            source_id: article.source.id,
-            source_name: article.source.name,
-            author: article.author,
-            title: article.title,
-            description: article.description,
-            url: article.url,
-            url_img: article.urlToImage,
-            published_at: article.publishedAt,
-            content: article.content,
-        });
+        Inertia.post("/article/favorite", article_remaped);
     };
     const unfavoriteHandler = (e: React.FormEvent) => {
         e.preventDefault();
-        Inertia.post("/article/unfavorite", {
-            title: article.title,
-            source_name: article.source.name,
-        });
+        Inertia.post("/article/unfavorite", article_remaped);
+    };
+    const openHandler = (e: React.FormEvent) => {
+        e.preventDefault();
+        Inertia.post("/article/create", article_remaped);
     };
 
     return (
@@ -70,6 +74,9 @@ function ArticleComponent({ index, article }: TypeArticle) {
                 <div className="">{article.content}</div>
 
                 <div className="flex justify-between w-full">
+                    <a target="_blank" className="link" href={article.url}>
+                        {article.source.name}
+                    </a>
                     {article.author && <div>By {article.author}</div>}
                 </div>
             </ArticleSection>
@@ -77,7 +84,6 @@ function ArticleComponent({ index, article }: TypeArticle) {
             <ArticleSection>
                 {!favorite ? (
                     <form onSubmit={favoriteHandler}>
-                        <input name="index" type="hidden" value={index ?? 0} />
                         <input
                             value={`Favorite`}
                             className={`cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent`}
@@ -86,7 +92,6 @@ function ArticleComponent({ index, article }: TypeArticle) {
                     </form>
                 ) : (
                     <form onSubmit={unfavoriteHandler}>
-                        <input name="index" type="hidden" value={index ?? 0} />
                         <input
                             value={`Favorited`}
                             className={`cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white`}
@@ -95,9 +100,13 @@ function ArticleComponent({ index, article }: TypeArticle) {
                     </form>
                 )}
 
-                <a target="_blank" className="link" href={article.url}>
-                    {article.source.name}
-                </a>
+                <form onSubmit={openHandler}>
+                    <input
+                        value={`Open`}
+                        className={`link bg-transparent`}
+                        type="submit"
+                    />
+                </form>
             </ArticleSection>
         </div>
     );

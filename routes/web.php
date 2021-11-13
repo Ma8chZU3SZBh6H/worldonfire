@@ -30,6 +30,8 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::post('/article/create', [ArticleController::class, 'create'])->name('article.create');
+Route::get('/article/{source}/{title}', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/favorite', [ArticleController::class, 'store'])->name('article.favorite');
 Route::post('/article/unfavorite', [ArticleController::class, 'destroy'])->name('article.unfavorite');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ArticleHelper;
 use App\Helpers\NewsApi;
 use App\Models\Article;
 use App\Models\Favorite;
@@ -15,7 +16,28 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only(['create', 'store', 'destroy']);
+    }
+
+    public function index($source, $title)
+    {
+        $article = ArticleHelper::remap(Article::where([
+            ['source_name', $source],
+            ['title', $title]
+        ])->get()->toArray());
+        $fav = User::find(Auth::id())->Articles()->get();
+
+        return Inertia::render('Article', [
+            'news' => $article,
+            'favs' => $fav
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        $article = ArticleHelper::create($request);
+
+        return Redirect::route('article', [$article->source_name, $article->title]);
     }
 
     /**
@@ -26,52 +48,13 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'source_id' => ['max:10000'],
-            'source_name' => ['required', 'max:10000'],
-            'author' => ['max:10000'],
-            'title' => ['required', 'max:10000'],
-            'description' => ['required', 'max:10000'],
-            'url' => ['required', 'max:10000'],
-            'url_img' => ['required', 'max:10000'],
-            'published_at' => ['required', 'max:10000'],
-            'content' => ['max:10000']
-        ]);
-
-        $findIfExistsAlready = Article::where([
-            ["title", $request->title],
-            ["source_name", $request->source_name]
-        ])->first();
-
-        if ($findIfExistsAlready == null) {
-            $article = Article::create([
-                'source_id' => $request->source_id,
-                'source_name' => $request->source_name,
-                'author' => $request->author,
-                'title' => $request->title,
-                'description' => $request->description,
-                'url' => $request->url,
-                'url_img' => $request->url_img,
-                'published_at' => $request->published_at,
-                'content' => $request->content,
+        $article = ArticleHelper::create($request);
+        $found_article = User::find(Auth::id())->Favorites()->where("article_id", $article->id)->first();
+        if ($found_article == null) {
+            Favorite::create([
+                'user_id' => Auth::user()->id,
+                'article_id' => $article->id
             ]);
-
-            $found_article = User::find(Auth::id())->Favorites()->where("article_id", $article->id)->first();
-            if ($found_article == null) {
-                Favorite::create([
-                    'user_id' => Auth::user()->id,
-                    'article_id' => $article->id
-                ]);
-            }
-        } else {
-
-            $found_article = User::find(Auth::id())->Favorites()->where("article_id", $findIfExistsAlready->id)->first();
-            if ($found_article == null) {
-                Favorite::create([
-                    'user_id' => Auth::user()->id,
-                    'article_id' => $findIfExistsAlready->id
-                ]);
-            }
         }
 
         return Redirect::back();
