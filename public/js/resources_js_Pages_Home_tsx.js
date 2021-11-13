@@ -78,11 +78,11 @@ function ArticleComponent(_a) {
   var unfavoriteHandler = function unfavoriteHandler(e) {
     e.preventDefault();
     inertia_1.Inertia.post("/article/unfavorite", {
-      title: article.title
+      title: article.title,
+      source_name: article.source.name
     });
   };
 
-  console.log(favorite);
   return (0, jsx_runtime_1.jsxs)("div", __assign({
     onClick: function onClick() {
       return newsActionSelect(selected);
@@ -403,6 +403,7 @@ var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./res
 
 function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
+  console.log(props);
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
     className: " shadow-md relative md:z-10 "
@@ -753,12 +754,14 @@ var Home = function Home() {
       children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
       }, {
-        children: news.news.map(function (article, index) {
+        children: news.news.length ? news.news.map(function (article, index) {
           return (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
             article: article,
             index: index + 1
           }, index);
-        })
+        }) : (0, jsx_runtime_1.jsx)("div", {
+          children: "Nothing found!"
+        }, void 0)
       }), void 0)]
     }), void 0)
   }, void 0);

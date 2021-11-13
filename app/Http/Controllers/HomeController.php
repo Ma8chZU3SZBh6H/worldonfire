@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ArticleHelper;
 use App\Helpers\NewsApi;
 use App\Models\Article;
+use App\Models\Favorite;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -24,11 +27,11 @@ class HomeController extends Controller
     public function index()
     {
         $newsApi = new NewsApi('homenews');
-        $favorites = Article::favs();
+        $fav = User::find(Auth::id())->Articles()->get();
 
         return Inertia::render('Home', [
             'news' => $newsApi->news,
-            'favs' => $favorites
+            'favs' => $fav
         ]);
     }
 
@@ -39,9 +42,9 @@ class HomeController extends Controller
      */
     public function show()
     {
-        $favorites = Article::favs();
+        $fav = ArticleHelper::remap(User::find(Auth::id())->Articles()->get()->toArray());
         return Inertia::render('Home', [
-            'news' => $favorites
+            'news' => $fav
         ]);
     }
 }

@@ -6,6 +6,7 @@ import { TypePageProps } from "../types/Types";
 
 function Navbar() {
     const props = usePage<Page<TypePageProps>>().props;
+    console.log(props);
     const { navActionToggle } = useNav();
     return (
         <nav className=" shadow-md relative md:z-10 ">

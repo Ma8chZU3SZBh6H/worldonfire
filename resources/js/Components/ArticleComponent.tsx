@@ -35,10 +35,10 @@ function ArticleComponent({ index, article }: TypeArticle) {
         e.preventDefault();
         Inertia.post("/article/unfavorite", {
             title: article.title,
+            source_name: article.source.name,
         });
     };
 
-    console.log(favorite);
     return (
         <div
             onClick={() => newsActionSelect(selected)}

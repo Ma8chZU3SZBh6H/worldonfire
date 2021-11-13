@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Models\Article;
+use App\Models\Favorite;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +35,8 @@ Route::post('/article/unfavorite', [ArticleController::class, 'destroy'])->name(
 
 Route::get('/test', function () {
     return Article::all();
+});
+
+Route::get('/test2', function () {
+    return Favorite::all();
 });

@@ -18,13 +18,17 @@ const Home = () => {
             <div className={` gap-1 flex  items-start`}>
                 {nav.expanded && <Nav />}
                 <div className="py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline">
-                    {news.news.map((article: ArticleType, index: number) => (
-                        <Article
-                            key={index}
-                            article={article}
-                            index={index + 1}
-                        />
-                    ))}
+                    {news.news.length ? (
+                        news.news.map((article: ArticleType, index: number) => (
+                            <Article
+                                key={index}
+                                article={article}
+                                index={index + 1}
+                            />
+                        ))
+                    ) : (
+                        <div>Nothing found!</div>
+                    )}
                 </div>
             </div>
         </Main>

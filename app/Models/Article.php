@@ -20,29 +20,19 @@ class Article extends Model
         'url_img',
         'published_at',
         'content',
-        'user_id'
     ];
 
-    public static function favs()
+    public static function Favorite($title, $source_name)
     {
-        if (Auth::user()) {
-            $articles = Article::where("user_id", "=", Auth::user()->id)->get()->toArray();
-            //dd($articles);
-            return array_map(function ($article) {
-                return [
-                    'source' => [
-                        'id' => $article['source_id'],
-                        'name' =>  $article['source_name'],
-                    ],
-                    'author' => $article['author'],
-                    'title' => $article['title'],
-                    'description' => $article['description'],
-                    'url' => $article['url'],
-                    'urlToImage' => $article['url_img'],
-                    'publishedAt' => $article['published_at'],
-                    'content' => $article['content'],
-                ];
-            }, $articles);
+        $article = Article::where([
+            ["title", $title],
+            ["source_name", $source_name]
+        ])->first();
+        if ($article) {
+            return Favorite::where([
+                ["user_id", Auth::id()],
+                ["article_id", $article->id]
+            ]);
         } else {
             return null;
         }

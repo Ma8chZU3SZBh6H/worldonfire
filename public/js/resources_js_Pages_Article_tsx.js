@@ -78,11 +78,11 @@ function ArticleComponent(_a) {
   var unfavoriteHandler = function unfavoriteHandler(e) {
     e.preventDefault();
     inertia_1.Inertia.post("/article/unfavorite", {
-      title: article.title
+      title: article.title,
+      source_name: article.source.name
     });
   };
 
-  console.log(favorite);
   return (0, jsx_runtime_1.jsxs)("div", __assign({
     onClick: function onClick() {
       return newsActionSelect(selected);
@@ -312,6 +312,7 @@ var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./res
 
 function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
+  console.log(props);
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
     className: " shadow-md relative md:z-10 "

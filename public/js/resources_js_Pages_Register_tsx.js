@@ -193,6 +193,7 @@ var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./res
 
 function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
+  console.log(props);
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
     className: " shadow-md relative md:z-10 "
