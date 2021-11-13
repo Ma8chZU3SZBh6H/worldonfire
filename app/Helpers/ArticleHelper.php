@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ArticleHelper
 {
+    /**
+     * Creates article in database of doesn't exist
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Models\Article
+     */
     public static function create(Request $request)
     {
         $request->validate([
@@ -44,6 +50,12 @@ class ArticleHelper
         }
     }
 
+    /**
+     * Remaps Article data structure from dabase friendly, to original.
+     *
+     * @param  array  $articles
+     * @return array
+     */
     public static function remap($articles)
     {
         return array_map(function ($article) {

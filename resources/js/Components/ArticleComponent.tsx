@@ -8,40 +8,14 @@ import React, { useEffect, useState } from "react";
 import useInputs from "../Hooks/useInputs";
 import { Article } from "../types/Article";
 import { Inertia } from "@inertiajs/inertia";
+import useFavorite from "../Hooks/useFavorite";
+import useArticleCreateForm from "../Hooks/useArticleCreateForm";
 
 function ArticleComponent({ index, article }: TypeArticle) {
     const { news, newsActionSelect } = useNews();
+    const { isFavorite, toggleFavorite } = useFavorite(article);
+    const { open } = useArticleCreateForm(article);
     const selected = (index ?? 0) + 1;
-    const favorite =
-        news.favs.filter((fav: Article) => fav.title == article.title).length >
-        0
-            ? true
-            : false;
-
-    const article_remaped = {
-        source_id: article.source.id,
-        source_name: article.source.name,
-        author: article.author,
-        title: article.title,
-        description: article.description,
-        url: article.url,
-        url_img: article.urlToImage,
-        published_at: article.publishedAt,
-        content: article.content,
-    };
-
-    const favoriteHandler = (e: React.FormEvent) => {
-        e.preventDefault();
-        Inertia.post("/article/favorite", article_remaped);
-    };
-    const unfavoriteHandler = (e: React.FormEvent) => {
-        e.preventDefault();
-        Inertia.post("/article/unfavorite", article_remaped);
-    };
-    const openHandler = (e: React.FormEvent) => {
-        e.preventDefault();
-        Inertia.post("/article/create", article_remaped);
-    };
 
     return (
         <div
@@ -71,42 +45,27 @@ function ArticleComponent({ index, article }: TypeArticle) {
             <ArticleSection>{article.description}</ArticleSection>
 
             <ArticleSection index={selected} expanded={index ? false : true}>
-                <div className="">{article.content}</div>
+                <div className="flex flex-col gap-3">
+                    <div className="">{article.content}</div>
 
-                <div className="flex justify-between w-full">
-                    <a target="_blank" className="link" href={article.url}>
-                        {article.source.name}
-                    </a>
-                    {article.author && <div>By {article.author}</div>}
+                    <div className="flex justify-between ga">
+                        <a target="_blank" className="link" href={article.url}>
+                            {article.source.name}
+                        </a>
+                        {article.author && <div>By {article.author}</div>}
+                    </div>
+                    <div className="flex justify-between">
+                        <button
+                            onClick={toggleFavorite}
+                            className={isFavorite ? "btn-fav" : "btn-unfav"}
+                        >
+                            {isFavorite ? "Favorite" : "Favorited"}
+                        </button>
+                        <button onClick={open} className="link bg-transparent">
+                            Open
+                        </button>
+                    </div>
                 </div>
-            </ArticleSection>
-
-            <ArticleSection>
-                {!favorite ? (
-                    <form onSubmit={favoriteHandler}>
-                        <input
-                            value={`Favorite`}
-                            className={`cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent`}
-                            type="submit"
-                        />
-                    </form>
-                ) : (
-                    <form onSubmit={unfavoriteHandler}>
-                        <input
-                            value={`Favorited`}
-                            className={`cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white`}
-                            type="submit"
-                        />
-                    </form>
-                )}
-
-                <form onSubmit={openHandler}>
-                    <input
-                        value={`Open`}
-                        className={`link bg-transparent`}
-                        type="submit"
-                    />
-                </form>
             </ArticleSection>
         </div>
     );

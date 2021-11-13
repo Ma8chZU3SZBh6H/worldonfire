@@ -19,6 +19,13 @@ class ArticleController extends Controller
         $this->middleware('auth')->only(['create', 'store', 'destroy']);
     }
 
+    /**
+     * Shows Article in detailed view
+     *
+     * @param  string  $source
+     * @param  string  $title
+     * @return \Inertia\Response
+     */
     public function index($source, $title)
     {
         $article = ArticleHelper::remap(Article::where([
@@ -33,6 +40,13 @@ class ArticleController extends Controller
         ]);
     }
 
+
+    /**
+     * Creates article in database if it doesn't exist
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create(Request $request)
     {
         $article = ArticleHelper::create($request);

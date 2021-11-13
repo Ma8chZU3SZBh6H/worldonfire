@@ -35,6 +35,14 @@
     @apply py-1 text-lg rounded bg-blue-500 text-white font-bold transition hover:bg-blue-700 cursor-pointer;
 }
 
+.btn-fav {
+    @apply cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent;
+}
+
+.btn-unfav {
+    @apply cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white;
+}
+
 .link {
     @apply text-blue-500 transition hover:text-blue-700 font-medium;
 }

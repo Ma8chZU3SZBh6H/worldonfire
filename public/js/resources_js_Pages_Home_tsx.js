@@ -45,7 +45,9 @@ var ArticleHeader_1 = __importDefault(__webpack_require__(/*! ./ArticleHeader */
 
 var ArticleSection_1 = __importDefault(__webpack_require__(/*! ./ArticleSection */ "./resources/js/Components/ArticleSection.tsx"));
 
-var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+var useFavorite_1 = __importDefault(__webpack_require__(/*! ../Hooks/useFavorite */ "./resources/js/Hooks/useFavorite.ts"));
+
+var useArticleCreateForm_1 = __importDefault(__webpack_require__(/*! ../Hooks/useArticleCreateForm */ "./resources/js/Hooks/useArticleCreateForm.ts"));
 
 function ArticleComponent(_a) {
   var index = _a.index,
@@ -55,37 +57,12 @@ function ArticleComponent(_a) {
       news = _b.news,
       newsActionSelect = _b.newsActionSelect;
 
+  var _c = (0, useFavorite_1["default"])(article),
+      isFavorite = _c.isFavorite,
+      toggleFavorite = _c.toggleFavorite;
+
+  var open = (0, useArticleCreateForm_1["default"])(article).open;
   var selected = (index !== null && index !== void 0 ? index : 0) + 1;
-  var favorite = news.favs.filter(function (fav) {
-    return fav.title == article.title;
-  }).length > 0 ? true : false;
-  var article_remaped = {
-    source_id: article.source.id,
-    source_name: article.source.name,
-    author: article.author,
-    title: article.title,
-    description: article.description,
-    url: article.url,
-    url_img: article.urlToImage,
-    published_at: article.publishedAt,
-    content: article.content
-  };
-
-  var favoriteHandler = function favoriteHandler(e) {
-    e.preventDefault();
-    inertia_1.Inertia.post("/article/favorite", article_remaped);
-  };
-
-  var unfavoriteHandler = function unfavoriteHandler(e) {
-    e.preventDefault();
-    inertia_1.Inertia.post("/article/unfavorite", article_remaped);
-  };
-
-  var openHandler = function openHandler(e) {
-    e.preventDefault();
-    inertia_1.Inertia.post("/article/create", article_remaped);
-  };
-
   return (0, jsx_runtime_1.jsxs)("div", __assign({
     onClick: function onClick() {
       return newsActionSelect(selected);
@@ -113,54 +90,46 @@ function ArticleComponent(_a) {
       }, void 0)]
     }), void 0), (0, jsx_runtime_1.jsx)(ArticleSection_1["default"], {
       children: article.description
-    }, void 0), (0, jsx_runtime_1.jsxs)(ArticleSection_1["default"], __assign({
+    }, void 0), (0, jsx_runtime_1.jsx)(ArticleSection_1["default"], __assign({
       index: selected,
       expanded: index ? false : true
     }, {
-      children: [(0, jsx_runtime_1.jsx)("div", __assign({
-        className: ""
+      children: (0, jsx_runtime_1.jsxs)("div", __assign({
+        className: "flex flex-col gap-3"
       }, {
-        children: article.content
-      }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: "flex justify-between w-full"
-      }, {
-        children: [(0, jsx_runtime_1.jsx)("a", __assign({
-          target: "_blank",
-          className: "link",
-          href: article.url
+        children: [(0, jsx_runtime_1.jsx)("div", __assign({
+          className: ""
         }, {
-          children: article.source.name
-        }), void 0), article.author && (0, jsx_runtime_1.jsxs)("div", {
-          children: ["By ", article.author]
-        }, void 0)]
-      }), void 0)]
-    }), void 0), (0, jsx_runtime_1.jsxs)(ArticleSection_1["default"], {
-      children: [!favorite ? (0, jsx_runtime_1.jsx)("form", __assign({
-        onSubmit: favoriteHandler
-      }, {
-        children: (0, jsx_runtime_1.jsx)("input", {
-          value: "Favorite",
-          className: "cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent",
-          type: "submit"
-        }, void 0)
-      }), void 0) : (0, jsx_runtime_1.jsx)("form", __assign({
-        onSubmit: unfavoriteHandler
-      }, {
-        children: (0, jsx_runtime_1.jsx)("input", {
-          value: "Favorited",
-          className: "cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white",
-          type: "submit"
-        }, void 0)
-      }), void 0), (0, jsx_runtime_1.jsx)("form", __assign({
-        onSubmit: openHandler
-      }, {
-        children: (0, jsx_runtime_1.jsx)("input", {
-          value: "Open",
-          className: "link bg-transparent",
-          type: "submit"
-        }, void 0)
-      }), void 0)]
-    }, void 0)]
+          children: article.content
+        }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "flex justify-between ga"
+        }, {
+          children: [(0, jsx_runtime_1.jsx)("a", __assign({
+            target: "_blank",
+            className: "link",
+            href: article.url
+          }, {
+            children: article.source.name
+          }), void 0), article.author && (0, jsx_runtime_1.jsxs)("div", {
+            children: ["By ", article.author]
+          }, void 0)]
+        }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "flex justify-between"
+        }, {
+          children: [(0, jsx_runtime_1.jsx)("button", __assign({
+            onClick: toggleFavorite,
+            className: isFavorite ? "btn-fav" : "btn-unfav"
+          }, {
+            children: isFavorite ? "Favorite" : "Favorited"
+          }), void 0), (0, jsx_runtime_1.jsx)("button", __assign({
+            onClick: open,
+            className: "link bg-transparent"
+          }, {
+            children: "Open"
+          }), void 0)]
+        }), void 0)]
+      }), void 0)
+    }), void 0)]
   }), void 0);
 }
 
@@ -262,7 +231,7 @@ function ArticleSection(_a) {
       expanded = _c === void 0 ? true : _c;
   var news = (0, useNews_1["default"])().news;
   return (0, jsx_runtime_1.jsx)("div", __assign({
-    className: "col-span-2 flex justify-between flex-wrap overflow-hidden transition-all gap-3 " + (((_b = news.selected == index) !== null && _b !== void 0 ? _b : 0) || expanded ? "max-h-60" : "max-h-0") + " " + className + " "
+    className: " flex justify-between flex-wrap overflow-hidden transition-all gap-3 " + (((_b = news.selected == index) !== null && _b !== void 0 ? _b : 0) || expanded ? "max-h-60" : "max-h-0") + " " + className + " "
   }, {
     children: children
   }), void 0);
@@ -460,6 +429,143 @@ function Navbar() {
 }
 
 exports["default"] = Navbar;
+
+/***/ }),
+
+/***/ "./resources/js/Hooks/useArticleCreateForm.ts":
+/*!****************************************************!*\
+  !*** ./resources/js/Hooks/useArticleCreateForm.ts ***!
+  \****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+var useArticleRemapped_1 = __importDefault(__webpack_require__(/*! ./useArticleRemapped */ "./resources/js/Hooks/useArticleRemapped.ts"));
+
+function useArticleCreateForm(article) {
+  var article_remapped = (0, useArticleRemapped_1["default"])(article);
+
+  var openReq = function openReq() {
+    inertia_1.Inertia.post("/article/create", article_remapped);
+  };
+
+  return {
+    open: openReq
+  };
+}
+
+exports["default"] = useArticleCreateForm;
+
+/***/ }),
+
+/***/ "./resources/js/Hooks/useArticleRemapped.ts":
+/*!**************************************************!*\
+  !*** ./resources/js/Hooks/useArticleRemapped.ts ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+function useArticleRemapped(article) {
+  return {
+    source_id: article.source.id,
+    source_name: article.source.name,
+    author: article.author,
+    title: article.title,
+    description: article.description,
+    url: article.url,
+    url_img: article.urlToImage,
+    published_at: article.publishedAt,
+    content: article.content
+  };
+}
+
+exports["default"] = useArticleRemapped;
+
+/***/ }),
+
+/***/ "./resources/js/Hooks/useFavorite.ts":
+/*!*******************************************!*\
+  !*** ./resources/js/Hooks/useFavorite.ts ***!
+  \*******************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var useArticleRemapped_1 = __importDefault(__webpack_require__(/*! ./useArticleRemapped */ "./resources/js/Hooks/useArticleRemapped.ts"));
+
+var useNews_1 = __importDefault(__webpack_require__(/*! ./useNews */ "./resources/js/Hooks/useNews.ts"));
+
+function useFavorite(article) {
+  var news = (0, useNews_1["default"])().news;
+
+  var _a = (0, react_1.useState)(false),
+      favorite = _a[0],
+      setFavorite = _a[1];
+
+  var article_remapped = (0, useArticleRemapped_1["default"])(article);
+  (0, react_1.useEffect)(function () {
+    setFavorite(news.favs.filter(function (fav) {
+      return fav.title == article.title;
+    }).length > 0 ? true : false);
+  }, [news.favs]);
+
+  var favoriteReq = function favoriteReq() {
+    inertia_1.Inertia.post("/article/favorite", article_remapped);
+  };
+
+  var unfavoriteReq = function unfavoriteReq() {
+    inertia_1.Inertia.post("/article/unfavorite", article_remapped);
+  };
+
+  var toggle = function toggle() {
+    if (favorite) {
+      unfavoriteReq();
+    } else {
+      favoriteReq();
+    }
+  };
+
+  return {
+    isFavorite: favorite,
+    toggleFavorite: toggle
+  };
+}
+
+exports["default"] = useFavorite;
 
 /***/ }),
 

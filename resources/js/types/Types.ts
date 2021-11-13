@@ -36,6 +36,10 @@ export interface TypeArticle {
     article: Article;
 }
 
+export interface TypeFullArticle {
+    article: Article;
+}
+
 export interface TypeArticleSection {
     children: any;
     className?: string;

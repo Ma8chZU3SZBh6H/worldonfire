@@ -11,7 +11,7 @@ function ArticleSection({
 
     return (
         <div
-            className={`col-span-2 flex justify-between flex-wrap overflow-hidden transition-all gap-3 ${
+            className={` flex justify-between flex-wrap overflow-hidden transition-all gap-3 ${
                 (news.selected == index ?? 0) || expanded
                     ? "max-h-60"
                     : "max-h-0"
