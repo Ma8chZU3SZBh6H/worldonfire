@@ -37,7 +37,9 @@ class NewsApi
     {
         $httpClient = new Client();
         $response = $httpClient->get($this->url);
+        dd($response->getBody()->getContents());
         $this->news = json_decode($response->getBody()->getContents())->articles;
+
         error_log("BORKEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
     }
 

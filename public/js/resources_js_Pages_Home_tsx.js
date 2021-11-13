@@ -41,11 +41,11 @@ var useNews_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNews */ "./r
 
 var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
 
-var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-
 var ArticleHeader_1 = __importDefault(__webpack_require__(/*! ./ArticleHeader */ "./resources/js/Components/ArticleHeader.tsx"));
 
 var ArticleSection_1 = __importDefault(__webpack_require__(/*! ./ArticleSection */ "./resources/js/Components/ArticleSection.tsx"));
+
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 
 function ArticleComponent(_a) {
   var index = _a.index,
@@ -56,6 +56,33 @@ function ArticleComponent(_a) {
       newsActionSelect = _b.newsActionSelect;
 
   var selected = (index !== null && index !== void 0 ? index : 0) + 1;
+  var favorite = news.favs.filter(function (fav) {
+    return fav.title == article.title;
+  }).length > 0 ? true : false;
+
+  var favoriteHandler = function favoriteHandler(e) {
+    e.preventDefault();
+    inertia_1.Inertia.post("/article/favorite", {
+      source_id: article.source.id,
+      source_name: article.source.name,
+      author: article.author,
+      title: article.title,
+      description: article.description,
+      url: article.url,
+      url_img: article.urlToImage,
+      published_at: article.publishedAt,
+      content: article.content
+    });
+  };
+
+  var unfavoriteHandler = function unfavoriteHandler(e) {
+    e.preventDefault();
+    inertia_1.Inertia.post("/article/unfavorite", {
+      title: article.title
+    });
+  };
+
+  console.log(favorite);
   return (0, jsx_runtime_1.jsxs)("div", __assign({
     onClick: function onClick() {
       return newsActionSelect(selected);
@@ -88,32 +115,47 @@ function ArticleComponent(_a) {
       expanded: index ? false : true
     }, {
       children: [(0, jsx_runtime_1.jsx)("div", __assign({
-        className: "  "
+        className: ""
       }, {
         children: article.content
-      }), void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: " flex justify-between w-full"
+      }), void 0), (0, jsx_runtime_1.jsx)("div", __assign({
+        className: "flex justify-between w-full"
       }, {
-        children: [(0, jsx_runtime_1.jsx)("a", __assign({
-          target: "_blank",
-          className: "link",
-          href: article.url
-        }, {
-          children: article.source.name
-        }), void 0), article.author && (0, jsx_runtime_1.jsxs)("div", {
+        children: article.author && (0, jsx_runtime_1.jsxs)("div", {
           children: ["By ", article.author]
-        }, void 0)]
+        }, void 0)
       }), void 0)]
     }), void 0), (0, jsx_runtime_1.jsxs)(ArticleSection_1["default"], {
-      children: [(0, jsx_runtime_1.jsx)("button", __assign({
-        className: "px-2 py-1 border-2 font-bold text-blue-400 rounded-md border-blue-400"
+      children: [!favorite ? (0, jsx_runtime_1.jsxs)("form", __assign({
+        onSubmit: favoriteHandler
       }, {
-        children: "Favorite"
-      }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+        children: [(0, jsx_runtime_1.jsx)("input", {
+          name: "index",
+          type: "hidden",
+          value: index !== null && index !== void 0 ? index : 0
+        }, void 0), (0, jsx_runtime_1.jsx)("input", {
+          value: "Favorite",
+          className: "cursor-pointer px-2 py-1 border-2 font-bold rounded-md  text-blue-400 border-blue-400 bg-transparent",
+          type: "submit"
+        }, void 0)]
+      }), void 0) : (0, jsx_runtime_1.jsxs)("form", __assign({
+        onSubmit: unfavoriteHandler
+      }, {
+        children: [(0, jsx_runtime_1.jsx)("input", {
+          name: "index",
+          type: "hidden",
+          value: index !== null && index !== void 0 ? index : 0
+        }, void 0), (0, jsx_runtime_1.jsx)("input", {
+          value: "Favorited",
+          className: "cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white",
+          type: "submit"
+        }, void 0)]
+      }), void 0), (0, jsx_runtime_1.jsx)("a", __assign({
+        target: "_blank",
         className: "link",
-        href: "/article/" + article.title
+        href: article.url
       }, {
-        children: "Share"
+        children: article.source.name
       }), void 0)]
     }, void 0)]
   }), void 0);
@@ -282,7 +324,7 @@ function Nav() {
   };
 
   return (0, jsx_runtime_1.jsxs)("div", __assign({
-    className: "flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white h-screen shadow-md"
+    className: "flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white"
   }, {
     children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
       href: "/",
@@ -347,7 +389,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md relative z-10"
+    className: " shadow-md relative z-10 "
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
@@ -374,13 +416,20 @@ function Navbar() {
           }), void 0)
         }), void 0)]
       }), void 0), (0, jsx_runtime_1.jsx)("div", {
-        children: props.user ? (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          className: "link",
-          href: "/logout",
-          method: "post"
+        children: props.user ? (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "flex gap-3"
         }, {
-          children: "Logout"
+          children: [(0, jsx_runtime_1.jsx)("div", {
+            children: props.user.name
+          }, void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+            className: "link",
+            href: "/logout",
+            method: "post"
+          }, {
+            children: "Logout"
+          }), void 0)]
         }), void 0) : (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          className: "link",
           href: "/login"
         }, {
           children: "Sign in"
@@ -597,14 +646,20 @@ function Main(_a) {
 
   var _b = (0, useNews_1["default"])(),
       newsActionSetNews = _b.newsActionSetNews,
-      news = _b.news;
+      news = _b.news,
+      newsActionSetFavs = _b.newsActionSetFavs;
 
   (0, react_1.useEffect)(function () {
     if (props.news) {
       console.log(props.news);
       newsActionSetNews(props.news);
     }
-  }, [props.news]);
+
+    if (props.favs) {
+      console.log(props.favs);
+      newsActionSetFavs(props.favs);
+    }
+  }, [props]);
   return (0, jsx_runtime_1.jsxs)("div", {
     children: [(0, jsx_runtime_1.jsx)(Navbar_1["default"], {}, void 0), children]
   }, void 0);
@@ -677,7 +732,7 @@ var Home = function Home() {
 
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: " gap-1 flex relative"
+      className: " gap-1 flex relative items-start"
     }, {
       children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
@@ -743,7 +798,7 @@ exports.navActionSelect = navActionSelect;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.newsActionSetNews = exports.newsActionSelect = void 0;
+exports.newsActionSetFavs = exports.newsActionSetNews = exports.newsActionSelect = void 0;
 
 var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./resources/js/State/Constants/newsConstants.ts");
 
@@ -764,6 +819,15 @@ function newsActionSetNews(news) {
 }
 
 exports.newsActionSetNews = newsActionSetNews;
+
+function newsActionSetFavs(news) {
+  return {
+    type: newsConstants_1.newsConstants.SET_FAVS,
+    payload: news
+  };
+}
+
+exports.newsActionSetFavs = newsActionSetFavs;
 
 /***/ }),
 

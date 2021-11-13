@@ -14,3 +14,10 @@ export function newsActionSetNews(news: Array<Article> | unknown) {
         payload: news,
     };
 }
+
+export function newsActionSetFavs(news: Array<Article> | unknown) {
+    return {
+        type: newsConstants.SET_FAVS,
+        payload: news,
+    };
+}

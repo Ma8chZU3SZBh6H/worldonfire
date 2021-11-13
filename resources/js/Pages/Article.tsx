@@ -13,7 +13,7 @@ function Article() {
         if (news.news && news.news.length > 0) {
             setArticle(news.news[0]);
         }
-    }, [news.news]);
+    }, [news]);
     return (
         <Main>
             <div className="flex justify-center py-4 gap-3">

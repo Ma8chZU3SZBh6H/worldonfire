@@ -8,7 +8,7 @@ function Navbar() {
     const props = usePage<Page<TypePageProps>>().props;
     const { navActionToggle } = useNav();
     return (
-        <nav className=" shadow-md relative z-10">
+        <nav className=" shadow-md relative z-10 ">
             <div className=" flex justify-between px-4 py-4  items-center">
                 <div className="flex items-center gap-3">
                     <button
@@ -23,11 +23,16 @@ function Navbar() {
                 </div>
                 <div>
                     {props.user ? (
-                        <Link className="link" href="/logout" method="post">
-                            Logout
-                        </Link>
+                        <div className="flex gap-3">
+                            <div>{props.user.name}</div>
+                            <Link className="link" href="/logout" method="post">
+                                Logout
+                            </Link>
+                        </div>
                     ) : (
-                        <Link href="/login">Sign in</Link>
+                        <Link className="link" href="/login">
+                            Sign in
+                        </Link>
                     )}
                 </div>
             </div>

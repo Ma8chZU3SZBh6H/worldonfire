@@ -195,7 +195,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md relative z-10"
+    className: " shadow-md relative z-10 "
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
@@ -222,13 +222,20 @@ function Navbar() {
           }), void 0)
         }), void 0)]
       }), void 0), (0, jsx_runtime_1.jsx)("div", {
-        children: props.user ? (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
-          className: "link",
-          href: "/logout",
-          method: "post"
+        children: props.user ? (0, jsx_runtime_1.jsxs)("div", __assign({
+          className: "flex gap-3"
         }, {
-          children: "Logout"
+          children: [(0, jsx_runtime_1.jsx)("div", {
+            children: props.user.name
+          }, void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+            className: "link",
+            href: "/logout",
+            method: "post"
+          }, {
+            children: "Logout"
+          }), void 0)]
         }), void 0) : (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          className: "link",
           href: "/login"
         }, {
           children: "Sign in"
@@ -462,14 +469,20 @@ function Main(_a) {
 
   var _b = (0, useNews_1["default"])(),
       newsActionSetNews = _b.newsActionSetNews,
-      news = _b.news;
+      news = _b.news,
+      newsActionSetFavs = _b.newsActionSetFavs;
 
   (0, react_1.useEffect)(function () {
     if (props.news) {
       console.log(props.news);
       newsActionSetNews(props.news);
     }
-  }, [props.news]);
+
+    if (props.favs) {
+      console.log(props.favs);
+      newsActionSetFavs(props.favs);
+    }
+  }, [props]);
   return (0, jsx_runtime_1.jsxs)("div", {
     children: [(0, jsx_runtime_1.jsx)(Navbar_1["default"], {}, void 0), children]
   }, void 0);
@@ -634,7 +647,7 @@ exports.navActionSelect = navActionSelect;
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.newsActionSetNews = exports.newsActionSelect = void 0;
+exports.newsActionSetFavs = exports.newsActionSetNews = exports.newsActionSelect = void 0;
 
 var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./resources/js/State/Constants/newsConstants.ts");
 
@@ -655,6 +668,15 @@ function newsActionSetNews(news) {
 }
 
 exports.newsActionSetNews = newsActionSetNews;
+
+function newsActionSetFavs(news) {
+  return {
+    type: newsConstants_1.newsConstants.SET_FAVS,
+    payload: news
+  };
+}
+
+exports.newsActionSetFavs = newsActionSetFavs;
 
 /***/ }),
 

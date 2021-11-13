@@ -5,6 +5,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Models\Article;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,11 +29,9 @@ Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::get('/article/{title}', [ArticleController::class, 'show'])->name('article');
+Route::post('/article/favorite', [ArticleController::class, 'store'])->name('article.favorite');
+Route::post('/article/unfavorite', [ArticleController::class, 'destroy'])->name('article.unfavorite');
 
-
-// Route::get("/test", function () {
-//     $newsApi = new NewsApi();
-//     $news = $newsApi->get_news();
-//     dd($news);
-// });
+Route::get('/test', function () {
+    return Article::all();
+});

@@ -14,7 +14,7 @@ function Nav() {
     };
 
     return (
-        <div className="flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white h-screen shadow-md">
+        <div className="flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white">
             <Link
                 href="/"
                 className={`text-xl  whitespace-nowrap ${isSelected("/")}`}

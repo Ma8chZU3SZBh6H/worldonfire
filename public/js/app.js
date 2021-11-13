@@ -3011,6 +3011,7 @@ var newsConstants;
 (function (newsConstants) {
   newsConstants["SELECT"] = "SELECT";
   newsConstants["SET_NEWS"] = "SET_NEWS";
+  newsConstants["SET_FAVS"] = "SET_FAVS";
 })(newsConstants = exports.newsConstants || (exports.newsConstants = {}));
 
 /***/ }),
@@ -3103,6 +3104,7 @@ var newsConstants_1 = __webpack_require__(/*! ../Constants/newsConstants */ "./r
 
 var defaultState = {
   news: [],
+  favs: [],
   selected: 0
 };
 
@@ -3120,6 +3122,11 @@ function newsReducer(state, action) {
     case newsConstants_1.newsConstants.SET_NEWS:
       return __assign(__assign({}, state), {
         news: action.payload
+      });
+
+    case newsConstants_1.newsConstants.SET_FAVS:
+      return __assign(__assign({}, state), {
+        favs: action.payload
       });
 
     default:

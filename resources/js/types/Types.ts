@@ -64,6 +64,10 @@ export interface TypeFormLogin {
     remember: { checked: boolean };
 }
 
+export interface TypeFormFavorite {
+    index: { value: string };
+}
+
 //props
 
 export interface TypePageProps {
@@ -71,6 +75,7 @@ export interface TypePageProps {
     errors: object;
     user?: User | null;
     news?: Array<Article> | null;
+    favs?: Array<Article> | null;
 }
 
 //redux actions
@@ -83,5 +88,6 @@ export interface TypeReduxAction {
 
 export interface TypeNewsState {
     news: Array<Article>;
+    favs: Array<Article>;
     selected: Number;
 }

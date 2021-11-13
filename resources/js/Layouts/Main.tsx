@@ -6,13 +6,17 @@ import { TypePropsMain } from "../types/Types";
 
 function Main({ children }: TypePropsMain) {
     const props = usePage().props;
-    const { newsActionSetNews, news } = useNews();
+    const { newsActionSetNews, news, newsActionSetFavs } = useNews();
     useEffect(() => {
         if (props.news) {
             console.log(props.news);
             newsActionSetNews(props.news);
         }
-    }, [props.news]);
+        if (props.favs) {
+            console.log(props.favs);
+            newsActionSetFavs(props.favs);
+        }
+    }, [props]);
     return (
         <div>
             <Navbar />
