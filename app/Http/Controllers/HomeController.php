@@ -42,7 +42,7 @@ class HomeController extends Controller
      */
     public function show()
     {
-        $favs = User::find(Auth::id())->Articles()->get();
+        $favs = User::find(Auth::id())->Articles()->orderBy("published_at", "desc")->get();
         $news = ArticleHelper::remap($favs->toArray());
         return Inertia::render('Home', [
             'news' => $news,

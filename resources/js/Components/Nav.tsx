@@ -27,7 +27,7 @@ function Nav() {
                 href="/"
                 className={`text-xl  whitespace-nowrap ${isSelected("/")}`}
             >
-                Top Headlines
+                Top US Headlines
             </Link>
             <Link
                 href="/favorites"

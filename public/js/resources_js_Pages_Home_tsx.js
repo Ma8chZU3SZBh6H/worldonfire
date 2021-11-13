@@ -318,7 +318,7 @@ function Nav() {
       href: "/",
       className: "text-xl  whitespace-nowrap " + isSelected("/")
     }, {
-      children: "Top Headlines"
+      children: "Top US Headlines"
     }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
       href: "/favorites",
       className: "text-xl whitespace-nowrap " + isSelected("/favorites")
