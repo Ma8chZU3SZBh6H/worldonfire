@@ -53,6 +53,10 @@ export interface TypeArticleHeader {
     className?: string;
 }
 
+export interface TypePagination {
+    page: TypePageProp;
+}
+
 //forms
 
 export interface TypeFormRegister {
@@ -80,6 +84,14 @@ export interface TypePageProps {
     user?: User | null;
     news?: Array<Article> | null;
     favs?: Array<Article> | null;
+    page?: TypePageProp | null;
+}
+
+export interface TypePageProp {
+    max: number;
+    page: number;
+    page_count: number;
+    show: number;
 }
 
 //redux actions

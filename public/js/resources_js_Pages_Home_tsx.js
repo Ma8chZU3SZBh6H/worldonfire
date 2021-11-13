@@ -292,9 +292,9 @@ function Nav() {
 
   var isSelected = function isSelected(page) {
     if (url == page) {
-      return "nav-link-selected ";
+      return " ";
     } else {
-      return "nav-link-unselected ";
+      return " ";
     }
   };
 
@@ -316,12 +316,12 @@ function Nav() {
       }), void 0)
     }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
       href: "/",
-      className: "text-xl  whitespace-nowrap " + isSelected("/")
+      className: "text-xl  whitespace-nowrap " + (!url.includes("favorites") ? "nav-link-selected" : "nav-link-unselected")
     }, {
       children: "Top US Headlines"
     }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
       href: "/favorites",
-      className: "text-xl whitespace-nowrap " + isSelected("/favorites")
+      className: "text-xl whitespace-nowrap " + (url.includes("favorites") ? "nav-link-selected" : "nav-link-unselected")
     }, {
       children: "Favorites"
     }), void 0)]
@@ -429,6 +429,59 @@ function Navbar() {
 }
 
 exports["default"] = Navbar;
+
+/***/ }),
+
+/***/ "./resources/js/Components/Pagination.tsx":
+/*!************************************************!*\
+  !*** ./resources/js/Components/Pagination.tsx ***!
+  \************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __assign = this && this.__assign || function () {
+  __assign = Object.assign || function (t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+      s = arguments[i];
+
+      for (var p in s) {
+        if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+      }
+    }
+
+    return t;
+  };
+
+  return __assign.apply(this, arguments);
+};
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+
+var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+function Pagination(_a) {
+  var page = _a.page;
+  return (0, jsx_runtime_1.jsx)("div", __assign({
+    className: "flex gap-1 justify-center"
+  }, {
+    children: Array(page.page_count).fill(0).map(function (value, index) {
+      return (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+        href: "/" + index,
+        className: page.page == index ? "btn-page-selected" : "btn-page"
+      }, {
+        children: index + 1
+      }), index);
+    })
+  }), void 0);
+}
+
+exports["default"] = Pagination;
 
 /***/ }),
 
@@ -832,6 +885,8 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
 var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
@@ -843,6 +898,8 @@ var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resou
 var ArticleComponent_1 = __importDefault(__webpack_require__(/*! ../Components/ArticleComponent */ "./resources/js/Components/ArticleComponent.tsx"));
 
 var Nav_1 = __importDefault(__webpack_require__(/*! ../Components/Nav */ "./resources/js/Components/Nav.tsx"));
+
+var Pagination_1 = __importDefault(__webpack_require__(/*! ../Components/Pagination */ "./resources/js/Components/Pagination.tsx"));
 
 var Home = function Home() {
   var nav = (0, useNav_1["default"])().nav;
@@ -856,21 +913,28 @@ var Home = function Home() {
       title = _b[0],
       setTitle = _b[1];
 
+  var page = (0, inertia_react_1.usePage)().props.page;
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " gap-1 flex  items-start"
     }, {
-      children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
-        className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
+      children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+        className: "flex flex-col gap-3"
       }, {
-        children: news.news.length ? news.news.map(function (article, index) {
-          return (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
-            article: article,
-            index: index + 1
-          }, index);
-        }) : (0, jsx_runtime_1.jsx)("div", {
-          children: "Nothing found!"
-        }, void 0)
+        children: [(0, jsx_runtime_1.jsx)("div", __assign({
+          className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"
+        }, {
+          children: news.news.length ? news.news.map(function (article, index) {
+            return (0, jsx_runtime_1.jsx)(ArticleComponent_1["default"], {
+              article: article,
+              index: index + 1
+            }, index);
+          }) : (0, jsx_runtime_1.jsx)("div", {
+            children: "Nothing found!"
+          }, void 0)
+        }), void 0), page && (0, jsx_runtime_1.jsx)(Pagination_1["default"], {
+          page: page
+        }, void 0)]
       }), void 0)]
     }), void 0)
   }, void 0);

@@ -43,6 +43,14 @@
     @apply cursor-pointer px-2 py-1 border-2 rounded-md  bg-blue-500 border-transparent font-bold text-white;
 }
 
+.btn-page {
+    @apply px-2 py-1 border-2 rounded-md cursor-pointer text-blue-400 border-blue-400 transition hover:bg-blue-400 hover:text-white font-bold;
+}
+
+.btn-page-selected {
+    @apply px-2 py-1 border-2 rounded-md cursor-pointer  border-blue-400  bg-blue-400 text-white font-bold;
+}
+
 .link {
     @apply text-blue-500 transition hover:text-blue-700 font-medium;
 }

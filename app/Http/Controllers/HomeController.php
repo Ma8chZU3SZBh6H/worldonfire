@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ArticleHelper;
 use App\Helpers\NewsApi;
+use App\Helpers\PaginationHelper;
 use App\Models\Article;
 use App\Models\Favorite;
 use App\Models\User;
@@ -22,16 +23,21 @@ class HomeController extends Controller
     /**
      * Shows homepage
      *
+     * @param int $page
      * @return \Inertia\Response
      */
-    public function index()
+    public function index($page = 0)
     {
         $newsApi = new NewsApi('homenews');
+        $pages = new PaginationHelper($newsApi->news);
+        $pages->page($page);
+
         $fav = User::find(Auth::id())->Articles()->get();
 
         return Inertia::render('Home', [
-            'news' => $newsApi->news,
-            'favs' => $fav
+            'news' => $pages->page,
+            'favs' => $fav,
+            'page' => $pages->page_data($page)
         ]);
     }
 
@@ -40,13 +46,18 @@ class HomeController extends Controller
      *
      * @return \Inertia\Response
      */
-    public function show()
+    public function show($page = 0)
     {
         $favs = User::find(Auth::id())->Articles()->orderBy("published_at", "desc")->get();
+
         $news = ArticleHelper::remap($favs->toArray());
+        $pages = new PaginationHelper($news);
+        $pages->page($page);
+
         return Inertia::render('Home', [
-            'news' => $news,
-            'favs' => $favs
+            'news' => $pages->page,
+            'favs' => $favs,
+            'page' => $pages->page_data($page)
         ]);
     }
 }

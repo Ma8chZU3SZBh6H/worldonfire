@@ -7,9 +7,9 @@ function Nav() {
     console.log(url);
     const isSelected = (page: string) => {
         if (url == page) {
-            return "nav-link-selected ";
+            return " ";
         } else {
-            return "nav-link-unselected ";
+            return " ";
         }
     };
 
@@ -25,15 +25,21 @@ function Nav() {
             </div>
             <Link
                 href="/"
-                className={`text-xl  whitespace-nowrap ${isSelected("/")}`}
+                className={`text-xl  whitespace-nowrap ${
+                    !url.includes("favorites")
+                        ? "nav-link-selected"
+                        : "nav-link-unselected"
+                }`}
             >
                 Top US Headlines
             </Link>
             <Link
                 href="/favorites"
-                className={`text-xl whitespace-nowrap ${isSelected(
-                    "/favorites"
-                )}`}
+                className={`text-xl whitespace-nowrap ${
+                    url.includes("favorites")
+                        ? "nav-link-selected"
+                        : "nav-link-unselected"
+                }`}
             >
                 Favorites
             </Link>
