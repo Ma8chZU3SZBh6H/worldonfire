@@ -9,12 +9,13 @@ function Navbar() {
     const [isSearching, setIsSearching] = useState(false);
     const { navActionToggle } = useNav();
     const searchHandler = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter" && props.page) {
+        if (e.key === "Enter") {
             setIsSearching(true);
             const { value } = e.target as typeof e.target & {
                 value: string;
             };
             Inertia.get(`/search/${value}`);
+            setIsSearching(false);
         }
     };
     return (

@@ -32,7 +32,10 @@ class HomeController extends Controller
         $pages = new PaginationHelper($newsApi->news);
         $pages->page($page);
 
-        $fav = User::find(Auth::id())->Articles()->get();
+        $fav = null;
+        if (Auth::check()) {
+            $favs = User::find(Auth::id())->Articles()->get();
+        }
 
         return Inertia::render('Home', [
             'news' => $pages->page,
@@ -49,7 +52,10 @@ class HomeController extends Controller
      */
     public function show($page = 0)
     {
-        $favs = User::find(Auth::id())->Articles()->orderBy("published_at", "desc")->get();
+        $favs = null;
+        if (Auth::check()) {
+            $favs = User::find(Auth::id())->Articles()->orderBy("published_at", "desc")->get();
+        }
 
         $news = ArticleHelper::remap($favs->toArray());
         $pages = new PaginationHelper($news);
@@ -76,7 +82,10 @@ class HomeController extends Controller
         $pages = new PaginationHelper($newsApi->news);
         $pages->page($page);
 
-        $favs = User::find(Auth::id())->Articles()->get();
+        $favs = null;
+        if (Auth::check()) {
+            $favs = User::find(Auth::id())->Articles()->get();
+        }
 
         return Inertia::render('Home', [
             'news' => $pages->page,

@@ -36,7 +36,6 @@ Route::get('/test3', function () {
 
 Route::get('/search/{title}/{page?}', [HomeController::class, 'search'])->name('search');
 Route::get('/favorites/{page?}', [HomeController::class, 'show'])->name('favorites');
-Route::get('/{page?}', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
@@ -50,3 +49,5 @@ Route::post('/article/create', [ArticleController::class, 'create'])->name('arti
 Route::get('/article/{source}/{title}', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/favorite', [ArticleController::class, 'store'])->name('article.favorite');
 Route::post('/article/unfavorite', [ArticleController::class, 'destroy'])->name('article.unfavorite');
+
+Route::get('/{page?}', [HomeController::class, 'index'])->name('home');

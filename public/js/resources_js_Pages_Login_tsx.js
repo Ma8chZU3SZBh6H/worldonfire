@@ -266,10 +266,11 @@ function Navbar() {
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
 
   var searchHandler = function searchHandler(e) {
-    if (e.key === "Enter" && props.page) {
+    if (e.key === "Enter") {
       setIsSearching(true);
       var value = e.target.value;
       inertia_1.Inertia.get("/search/" + value);
+      setIsSearching(false);
     }
   };
 
