@@ -19,7 +19,11 @@ function Navbar() {
                         <i className="fas fa-bars fa-lg"></i>
                     </button>
                     <h1 className="text-2xl font-bold text-gray-700 tracking-widest">
-                        <Link href="/">WorldOnFire</Link>
+                        <Link href="/">
+                            <span>World</span>
+                            <span className="text-blue-500">On</span>
+                            <span className="">Fire</span>
+                        </Link>
                     </h1>
                 </div>
                 <div>

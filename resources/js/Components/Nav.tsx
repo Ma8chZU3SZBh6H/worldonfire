@@ -4,14 +4,6 @@ import useNav from "../Hooks/useNav";
 function Nav() {
     const { nav, navActionToggle } = useNav();
     const { url } = usePage();
-    console.log(url);
-    const isSelected = (page: string) => {
-        if (url == page) {
-            return " ";
-        } else {
-            return " ";
-        }
-    };
 
     return (
         <div className="flex flex-col gap-3 py-4 pr-2 md:sticky fixed h-screen md:shadow-none shadow-md top-0 bg-white">

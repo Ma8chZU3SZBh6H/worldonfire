@@ -288,16 +288,6 @@ function Nav() {
       navActionToggle = _a.navActionToggle;
 
   var url = (0, inertia_react_1.usePage)().url;
-  console.log(url);
-
-  var isSelected = function isSelected(page) {
-    if (url == page) {
-      return " ";
-    } else {
-      return " ";
-    }
-  };
-
   return (0, jsx_runtime_1.jsxs)("div", __assign({
     className: "flex flex-col gap-3 py-4 pr-2 md:sticky fixed h-screen md:shadow-none shadow-md top-0 bg-white"
   }, {
@@ -398,10 +388,20 @@ function Navbar() {
         }), void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
           className: "text-2xl font-bold text-gray-700 tracking-widest"
         }, {
-          children: (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+          children: (0, jsx_runtime_1.jsxs)(inertia_react_1.Link, __assign({
             href: "/"
           }, {
-            children: "WorldOnFire"
+            children: [(0, jsx_runtime_1.jsx)("span", {
+              children: "World"
+            }, void 0), (0, jsx_runtime_1.jsx)("span", __assign({
+              className: "text-blue-500"
+            }, {
+              children: "On"
+            }), void 0), (0, jsx_runtime_1.jsx)("span", __assign({
+              className: ""
+            }, {
+              children: "Fire"
+            }), void 0)]
           }), void 0)
         }), void 0)]
       }), void 0), (0, jsx_runtime_1.jsx)("div", {
