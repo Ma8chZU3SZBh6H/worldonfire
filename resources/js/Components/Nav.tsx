@@ -1,9 +1,19 @@
 import { Link, usePage } from "@inertiajs/inertia-react";
+import { useEffect, useState } from "react";
 import useNav from "../Hooks/useNav";
 
 function Nav() {
     const { nav, navActionToggle } = useNav();
     const { url } = usePage();
+    const [selectedTab, setSelectedTab] = useState("/");
+
+    useEffect(() => {
+        (() => {
+            if (url.includes("search")) return setSelectedTab("search");
+            if (url.includes("favorites")) return setSelectedTab("favorites");
+            if (url.includes("/")) return setSelectedTab("home");
+        })();
+    }, [url]);
 
     return (
         <div className="flex flex-col gap-3 py-4 pr-2 md:sticky fixed h-screen md:shadow-none shadow-md top-0 bg-white">
@@ -15,10 +25,22 @@ function Nav() {
                     <i className="fas fa-bars fa-lg"></i>
                 </button>
             </div>
+            {selectedTab == "search" && (
+                <Link
+                    href="/"
+                    className={`text-xl  whitespace-nowrap ${
+                        selectedTab == "search"
+                            ? "nav-link-selected"
+                            : "nav-link-unselected"
+                    }`}
+                >
+                    Search
+                </Link>
+            )}
             <Link
                 href="/"
                 className={`text-xl  whitespace-nowrap ${
-                    !url.includes("favorites")
+                    selectedTab == "home"
                         ? "nav-link-selected"
                         : "nav-link-unselected"
                 }`}
@@ -28,7 +50,7 @@ function Nav() {
             <Link
                 href="/favorites"
                 className={`text-xl whitespace-nowrap ${
-                    url.includes("favorites")
+                    selectedTab == "favorites"
                         ? "nav-link-selected"
                         : "nav-link-unselected"
                 }`}

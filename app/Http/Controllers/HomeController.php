@@ -37,13 +37,14 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'news' => $pages->page,
             'favs' => $fav,
-            'page' => $pages->page_data($page)
+            'page' => $pages->page_data($page, "home")
         ]);
     }
 
     /**
      * Show favorites
      *
+     * @param int $page
      * @return \Inertia\Response
      */
     public function show($page = 0)
@@ -57,7 +58,30 @@ class HomeController extends Controller
         return Inertia::render('Home', [
             'news' => $pages->page,
             'favs' => $favs,
-            'page' => $pages->page_data($page)
+            'page' => $pages->page_data($page, "favorites")
+        ]);
+    }
+
+
+    /**
+     * Show search results
+     *
+     * @param string $title
+     * @param int $page
+     * @return \Inertia\Response
+     */
+    public function search($title, $page = 0)
+    {
+        $newsApi = new NewsApi('search', $title);
+        $pages = new PaginationHelper($newsApi->news);
+        $pages->page($page);
+
+        $favs = User::find(Auth::id())->Articles()->get();
+
+        return Inertia::render('Home', [
+            'news' => $pages->page,
+            'favs' => $favs,
+            'page' => $pages->page_data($page, "search", [$title])
         ]);
     }
 }

@@ -92,6 +92,7 @@ export interface TypePageProp {
     page: number;
     page_count: number;
     show: number;
+    path: string;
 }
 
 //redux actions

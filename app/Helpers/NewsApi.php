@@ -16,6 +16,7 @@ class NewsApi
     {
         $this->api_q = $q;
         $this->generate_url($type);
+
         if ($q == null) {
             $this->check_cache($type);
         } else {
@@ -31,7 +32,7 @@ class NewsApi
      *
      * @param  string
      */
-    public function check_cache($type)
+    private function check_cache($type)
     {
         if (Cache::has($type)) {
             $this->news = Cache::get($type);
@@ -45,7 +46,7 @@ class NewsApi
      * Gets data from api
      *
      */
-    public function get_news()
+    private function get_news()
     {
         $httpClient = new Client();
         $response = $httpClient->get($this->url);
@@ -58,11 +59,11 @@ class NewsApi
      *
      * @param  string
      */
-    public function generate_url($type)
+    private function generate_url($type)
     {
         switch ($type) {
-            case 'one':
-                $this->url = "https://newsapi.org/v2/top-headlines?country=us&apiKey={$this->api_key}&q={$this->api_q}";
+            case 'search':
+                $this->url = "https://newsapi.org/v2/everything?apiKey={$this->api_key}&q={$this->api_q}";
                 break;
             case 'homenews':
                 $this->url = "https://newsapi.org/v2/top-headlines?country=us&apiKey={$this->api_key}";

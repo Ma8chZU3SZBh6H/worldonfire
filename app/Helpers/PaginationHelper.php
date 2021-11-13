@@ -36,18 +36,25 @@ class PaginationHelper
      * returns information about the current page, for client side
      *
      * @param int $page
+     * @param string $route
+     * @param array $route_params
      * @return array
      */
-    public function page_data($page)
+    public function page_data($page, $route = null, $route_params = null)
     {
         $page_count_fraction = $this->max % $this->show;
         $page_count = ($this->max - $page_count_fraction) / $this->show;
+        $path = '/';
+        if ($route) {
+            $path = route($route, $route_params);
+        }
 
         return [
             'page' => $page,
             'show' => $this->show,
             'max' => $this->show,
-            'page_count' => $page_count
+            'page_count' => $page_count,
+            'path' => $path
         ];
     }
 

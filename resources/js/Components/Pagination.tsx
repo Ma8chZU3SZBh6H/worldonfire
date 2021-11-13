@@ -9,7 +9,7 @@ function Pagination({ page }: TypePagination) {
                 .fill(0)
                 .map((value, index) => (
                     <Link
-                        href={`/${index}`}
+                        href={`${page.path}/${index}`}
                         className={
                             page.page == index
                                 ? "btn-page-selected"

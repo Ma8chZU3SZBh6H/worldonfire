@@ -20,6 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/test', function () {
+    return Article::all();
+});
+
+Route::get('/test2', function () {
+    return Favorite::all();
+});
+
+Route::get('/test3', function () {
+    $news = new NewsApi('search', 'bitcoin');
+    dd($news->news);
+    return Favorite::all();
+});
+
+Route::get('/search/{title}/{page?}', [HomeController::class, 'search'])->name('search');
 Route::get('/favorites/{page?}', [HomeController::class, 'show'])->name('favorites');
 Route::get('/{page?}', [HomeController::class, 'index'])->name('home');
 
@@ -35,11 +50,3 @@ Route::post('/article/create', [ArticleController::class, 'create'])->name('arti
 Route::get('/article/{source}/{title}', [ArticleController::class, 'index'])->name('article');
 Route::post('/article/favorite', [ArticleController::class, 'store'])->name('article.favorite');
 Route::post('/article/unfavorite', [ArticleController::class, 'destroy'])->name('article.unfavorite');
-
-Route::get('/test', function () {
-    return Article::all();
-});
-
-Route::get('/test2', function () {
-    return Favorite::all();
-});

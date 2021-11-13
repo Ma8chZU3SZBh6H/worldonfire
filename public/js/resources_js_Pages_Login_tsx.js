@@ -248,14 +248,31 @@ Object.defineProperty(exports, "__esModule", ({
 
 var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
+var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+
 var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+
+var react_1 = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 
 var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
 
 function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
-  console.log(props);
+
+  var _a = (0, react_1.useState)(false),
+      isSearching = _a[0],
+      setIsSearching = _a[1];
+
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
+
+  var searchHandler = function searchHandler(e) {
+    if (e.key === "Enter" && props.page) {
+      setIsSearching(true);
+      var value = e.target.value;
+      inertia_1.Inertia.get("/search/" + value);
+    }
+  };
+
   return (0, jsx_runtime_1.jsx)("nav", __assign({
     className: " shadow-md relative md:z-10 "
   }, {
@@ -275,7 +292,7 @@ function Navbar() {
             className: "fas fa-bars fa-lg"
           }, void 0)
         }), void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
-          className: "text-2xl font-bold text-gray-700 tracking-widest"
+          className: "text-2xl font-bold text-gray-700 tracking-widest hidden md:block"
         }, {
           children: (0, jsx_runtime_1.jsxs)(inertia_react_1.Link, __assign({
             href: "/"
@@ -294,6 +311,14 @@ function Navbar() {
           }), void 0)
         }), void 0)]
       }), void 0), (0, jsx_runtime_1.jsx)("div", {
+        children: (0, jsx_runtime_1.jsx)("input", {
+          onKeyDown: searchHandler,
+          className: "border rounded-md py-1 px-2 " + (isSearching && "text-gray-500"),
+          placeholder: "Search...",
+          type: "text",
+          disabled: isSearching
+        }, void 0)
+      }, void 0), (0, jsx_runtime_1.jsx)("div", {
         children: props.user ? (0, jsx_runtime_1.jsxs)("div", __assign({
           className: "flex gap-3"
         }, {

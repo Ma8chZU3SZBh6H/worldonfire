@@ -24,9 +24,9 @@ function ArticleFullComponent({ article }: TypeFullArticle) {
             <div className="flex justify-between">
                 <button
                     onClick={toggleFavorite}
-                    className={isFavorite ? "btn-fav" : "btn-unfav"}
+                    className={isFavorite ? "btn-unfav" : "btn-fav"}
                 >
-                    {isFavorite ? "Favorite" : "Favorited"}
+                    {isFavorite ? "Favorited" : "Favorite"}
                 </button>
                 <a target="_blank" className="link" href={article.url}>
                     {article.source.name}
