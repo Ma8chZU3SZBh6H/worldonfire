@@ -919,7 +919,7 @@ var Home = function Home() {
       className: " gap-1 flex  items-start"
     }, {
       children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-        className: "flex flex-col gap-3"
+        className: "flex flex-col gap-3 pb-4"
       }, {
         children: [(0, jsx_runtime_1.jsx)("div", __assign({
           className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"

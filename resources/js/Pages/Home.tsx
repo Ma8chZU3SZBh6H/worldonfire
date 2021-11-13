@@ -22,7 +22,7 @@ const Home = () => {
         <Main>
             <div className={` gap-1 flex  items-start`}>
                 {nav.expanded && <Nav />}
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 pb-4">
                     <div className="py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline">
                         {news.news.length ? (
                             news.news.map(

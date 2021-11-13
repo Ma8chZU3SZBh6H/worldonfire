@@ -19,12 +19,25 @@ class PaginationHelper
         $this->max = count($data);
     }
 
+
+    /**
+     * Will slice the data depending on the page
+     *
+     * @param int $page
+     */
     public function page($page)
     {
         $this->page_clmap($page);
         $this->page = array_slice($this->data, $this->offset_start, $this->offset_end);
     }
 
+
+    /**
+     * returns information about the current page, for client side
+     *
+     * @param int $page
+     * @return array
+     */
     public function page_data($page)
     {
         $page_count_fraction = $this->max % $this->show;
