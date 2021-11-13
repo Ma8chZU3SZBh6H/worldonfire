@@ -15,7 +15,7 @@ const Home = () => {
     const [title, setTitle] = useState("Top Headlines");
     return (
         <Main>
-            <div className={` gap-1 flex relative items-start`}>
+            <div className={` gap-1 flex  items-start`}>
                 {nav.expanded && <Nav />}
                 <div className="py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline">
                     {news.news.map((article: ArticleType, index: number) => (

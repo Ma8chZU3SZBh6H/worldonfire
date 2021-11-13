@@ -311,7 +311,10 @@ var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./nod
 var useNav_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNav */ "./resources/js/Hooks/useNav.ts"));
 
 function Nav() {
-  var nav = (0, useNav_1["default"])().nav;
+  var _a = (0, useNav_1["default"])(),
+      nav = _a.nav,
+      navActionToggle = _a.navActionToggle;
+
   var url = (0, inertia_react_1.usePage)().url;
   console.log(url);
 
@@ -324,9 +327,22 @@ function Nav() {
   };
 
   return (0, jsx_runtime_1.jsxs)("div", __assign({
-    className: "flex flex-col gap-3 py-4 pr-2 md:relative absolute bg-white"
+    className: "flex flex-col gap-3 py-4 pr-2 md:sticky fixed h-screen md:shadow-none shadow-md top-0 bg-white"
   }, {
-    children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
+    children: [(0, jsx_runtime_1.jsx)("div", __assign({
+      className: "flex justify-end px-4 md:hidden"
+    }, {
+      children: (0, jsx_runtime_1.jsx)("button", __assign({
+        onClick: function onClick() {
+          return navActionToggle();
+        },
+        className: "transition text-gray-700 hover:text-blue-700 cursor-pointer"
+      }, {
+        children: (0, jsx_runtime_1.jsx)("i", {
+          className: "fas fa-bars fa-lg"
+        }, void 0)
+      }), void 0)
+    }), void 0), (0, jsx_runtime_1.jsx)(inertia_react_1.Link, __assign({
       href: "/",
       className: "text-xl  whitespace-nowrap " + isSelected("/")
     }, {
@@ -389,7 +405,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md relative z-10 "
+    className: " shadow-md relative md:z-10 "
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
@@ -732,7 +748,7 @@ var Home = function Home() {
 
   return (0, jsx_runtime_1.jsx)(Main_1["default"], {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: " gap-1 flex relative items-start"
+      className: " gap-1 flex  items-start"
     }, {
       children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
         className: "py-4 px-4 flex gap-3 flex-wrap justify-center items-baseline"

@@ -314,7 +314,7 @@ function Navbar() {
   var props = (0, inertia_react_1.usePage)().props;
   var navActionToggle = (0, useNav_1["default"])().navActionToggle;
   return (0, jsx_runtime_1.jsx)("nav", __assign({
-    className: " shadow-md relative z-10 "
+    className: " shadow-md relative md:z-10 "
   }, {
     children: (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " flex justify-between px-4 py-4  items-center"
