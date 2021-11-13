@@ -19,7 +19,7 @@ class CreateArticlesTable extends Migration
             $table->string('source_id')->nullable();
             $table->string('source_name');
             $table->string('author')->nullable();
-            $table->string('title')->unique();
+            $table->string('title');
             $table->string('description');
             $table->string('url');
             $table->string('url_img');
