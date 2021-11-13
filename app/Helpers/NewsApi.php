@@ -24,6 +24,13 @@ class NewsApi
             $this->check_cache($name);
         }
     }
+
+
+    /**
+     * Checks if data of api request is stored in cache
+     *
+     * @param  string
+     */
     public function check_cache($type)
     {
         if (Cache::has($type)) {
@@ -33,16 +40,24 @@ class NewsApi
             Cache::add($type, $this->news, 60 * 60 * 12);
         }
     }
+
+    /**
+     * Gets data from api
+     *
+     */
     public function get_news()
     {
         $httpClient = new Client();
         $response = $httpClient->get($this->url);
         dd($response->getBody()->getContents());
         $this->news = json_decode($response->getBody()->getContents())->articles;
-
-        error_log("BORKEDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD");
     }
 
+    /**
+     * Generates api request url
+     *
+     * @param  string
+     */
     public function generate_url($type)
     {
         switch ($type) {

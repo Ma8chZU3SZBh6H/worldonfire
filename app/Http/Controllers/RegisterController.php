@@ -16,6 +16,12 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * Shows register page
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function index()
     {
         return Inertia::render("Register");

@@ -16,6 +16,12 @@ class ArticleController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Handles favorite request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -53,6 +59,12 @@ class ArticleController extends Controller
         return Redirect::back();
     }
 
+    /**
+     * Handles unfavorite request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Request $request)
     {
         $request->validate([

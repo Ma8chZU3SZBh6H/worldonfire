@@ -16,6 +16,11 @@ class HomeController extends Controller
         $this->middleware('auth')->only('show');
     }
 
+    /**
+     * Shows homepage
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         $newsApi = new NewsApi('homenews');
@@ -27,6 +32,11 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Show favorites
+     *
+     * @return \Inertia\Response
+     */
     public function show()
     {
         $favorites = Article::favs();

@@ -16,11 +16,23 @@ class LoginController extends Controller
         $this->middleware('auth')->only(["destroy"]);
     }
 
+    /**
+     * Show login page
+     *
+     * @return \Inertia\Response
+     */
     public function index()
     {
         return Inertia::render("Login");
     }
 
+
+    /**
+     * Handles login request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store(Request $request)
     {
         $request->validate([
@@ -37,6 +49,12 @@ class LoginController extends Controller
         }
     }
 
+    /**
+     * Handles logout request
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Request $request)
     {
         Auth::logout();
