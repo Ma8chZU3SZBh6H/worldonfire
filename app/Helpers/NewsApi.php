@@ -9,14 +9,15 @@ class NewsApi
 {
     public $news = null;
     private $url = null;
-    private $api_key = "b40f6c9be16a4b64b6b16d9523c688f0";
+    private $api_key = null;
     private $api_q = null;
 
     public function __construct($type, $q = null)
     {
+        $this->api_key = env("API_KEY");
         $this->api_q = $q;
-        $this->generate_url($type);
 
+        $this->generate_url($type);
         if ($q == null) {
             $this->check_cache($type);
         } else {

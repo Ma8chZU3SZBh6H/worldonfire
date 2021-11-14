@@ -18,10 +18,10 @@ class CreateArticlesTable extends Migration
             $table->string('source_id')->nullable();
             $table->string('source_name');
             $table->string('author')->nullable();
-            $table->string('title');
+            $table->text('title');
             $table->text('description');
-            $table->string('url');
-            $table->string('url_img');
+            $table->text('url');
+            $table->text('url_img');
             $table->string('published_at');
             $table->text('content')->nullable();
             $table->timestamps();
