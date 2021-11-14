@@ -4,6 +4,10 @@ module.exports = {
 
         "./resources/**/*.js",
 
+        "./resources/**/*.ts",
+
+        "./resources/**/*.tsx",
+
         "./resources/**/*.vue",
     ],
     darkMode: false, // or 'media' or 'class'
