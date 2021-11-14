@@ -27,3 +27,7 @@ Laravel, Inertia.js, React, Redux, Docker, Tailwindcss, Typescript, etc.
    `./vendor/bin/sail up`
 8. Migrate the Database
    `./vendor/bin/sail artisan migrate`
+
+    ## It's also hosted on AWS
+
+    [WorldOnFIre](http://worldonfire.dragoninja.com/)
