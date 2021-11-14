@@ -32,7 +32,10 @@ class ArticleController extends Controller
             ['source_name', $source],
             ['title', $title]
         ])->get()->toArray());
-        $fav = User::find(Auth::id())->Articles()->get();
+        $fav = null;
+        if (Auth::check()) {
+            $fav = User::find(Auth::id())->Articles()->get();
+        }
 
         return Inertia::render('Article', [
             'news' => $article,

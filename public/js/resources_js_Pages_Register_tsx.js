@@ -141,6 +141,7 @@ var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules
 function InputSubmit(_a) {
   var value = _a.value;
   return (0, jsx_runtime_1.jsx)("input", {
+    name: "submit",
     className: "btn-submit",
     type: "submit",
     value: value

@@ -16,8 +16,13 @@ class RegisterTest extends DuskTestCase
     public function testExample()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Laravel');
+            $browser->visit('/register')
+                ->type('name', "test")
+                ->type("email", "test@test.com")
+                ->type("password", "test@test.com")
+                ->type("password_confirmation", "test@test.com")
+                ->press("submit")
+                ->assertPathIs("/");
         });
     }
 }
