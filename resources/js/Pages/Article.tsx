@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { ReactChild, useEffect, useState } from "react";
 import useNews from "../Hooks/useNews";
 import Main from "../Layouts/Main";
 import { Article, Article as ArticleType } from "../types/Article";
 import ArticleFullComponent from "../Components/ArticleFullComponent";
+import InReact, { ReactComponent } from "@inertiajs/inertia-react";
 
 function Article() {
     const [article, setArticle] = useState<ArticleType | null>(null);

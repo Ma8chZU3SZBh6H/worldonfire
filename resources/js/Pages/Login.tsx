@@ -7,6 +7,8 @@ import React from "react";
 import { TypeFormLogin } from "../types/Types";
 import { Inertia } from "@inertiajs/inertia";
 import useInputs from "../Hooks/useInputs";
+//@ts-ignore
+import { ReactComponent, Head } from "@inertiajs/inertia-react";
 
 function Login() {
     const formHandler = (e: React.FormEvent) => {
@@ -20,6 +22,7 @@ function Login() {
     };
     return (
         <Main>
+            <Head title="Login" />
             <div className="flex justify-center pt-8">
                 <form onSubmit={formHandler} className="form">
                     <h1 className="form-title">Login</h1>

@@ -11,6 +11,8 @@ import Nav from "../Components/Nav";
 import { Page } from "@inertiajs/inertia";
 import { TypePageProps } from "../types/Types";
 import Pagination from "../Components/Pagination";
+//@ts-ignore
+import { ReactComponent, Head } from "@inertiajs/inertia-react";
 
 const Home = () => {
     const { nav } = useNav();
@@ -20,6 +22,7 @@ const Home = () => {
 
     return (
         <Main>
+            <Head title="World News" />
             <div className={` gap-1 flex  items-start`}>
                 {nav.expanded && <Nav />}
                 <div className="flex flex-col gap-3 pb-4">

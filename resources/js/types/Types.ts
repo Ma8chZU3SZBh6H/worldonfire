@@ -5,7 +5,7 @@ import { User } from "./User";
 //components
 
 export interface TypePropsMain {
-    children: ReactChildren | React.ReactChild;
+    children: ReactChildren | React.ReactChild | any;
 }
 
 export interface TypeInput {

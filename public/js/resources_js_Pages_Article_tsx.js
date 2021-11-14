@@ -39,7 +39,10 @@ var jsx_runtime_1 = __webpack_require__(/*! react/jsx-runtime */ "./node_modules
 
 var moment_1 = __importDefault(__webpack_require__(/*! moment */ "./node_modules/moment/moment.js"));
 
-var useFavorite_1 = __importDefault(__webpack_require__(/*! ../Hooks/useFavorite */ "./resources/js/Hooks/useFavorite.ts"));
+var useFavorite_1 = __importDefault(__webpack_require__(/*! ../Hooks/useFavorite */ "./resources/js/Hooks/useFavorite.ts")); //@ts-ignore
+
+
+var inertia_react_1 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 function ArticleFullComponent(_a) {
   var article = _a.article;
@@ -48,48 +51,52 @@ function ArticleFullComponent(_a) {
       isFavorite = _b.isFavorite,
       toggleFavorite = _b.toggleFavorite;
 
-  return (0, jsx_runtime_1.jsxs)("div", __assign({
-    className: "px-8 py-6 max-w-2xl border rounded-md flex flex-col gap-3"
-  }, {
-    children: [(0, jsx_runtime_1.jsxs)("p", {
-      children: ["Published", " ", (0, jsx_runtime_1.jsx)("span", __assign({
-        className: "font-bold"
-      }, {
-        children: (0, moment_1["default"])(article.publishedAt).fromNow()
-      }), void 0)]
-    }, void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
-      className: "text-2xl font-bold"
-    }, {
-      children: article.title
-    }), void 0), (0, jsx_runtime_1.jsx)("img", {
-      src: article.urlToImage
-    }, void 0), (0, jsx_runtime_1.jsx)("p", {
-      children: article.description
-    }, void 0), (0, jsx_runtime_1.jsx)("p", {
-      children: article.content
-    }, void 0), (0, jsx_runtime_1.jsxs)("p", {
-      children: ["by ", (0, jsx_runtime_1.jsx)("span", __assign({
-        className: "font-bold"
-      }, {
-        children: article.author
-      }), void 0)]
+  return (0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, {
+    children: [(0, jsx_runtime_1.jsx)(inertia_react_1.Head, {
+      title: article.title
     }, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
-      className: "flex justify-between"
+      className: "px-8 py-6 max-w-2xl border rounded-md flex flex-col gap-3"
     }, {
-      children: [(0, jsx_runtime_1.jsx)("button", __assign({
-        onClick: toggleFavorite,
-        className: isFavorite ? "btn-unfav" : "btn-fav"
+      children: [(0, jsx_runtime_1.jsxs)("p", {
+        children: ["Published", " ", (0, jsx_runtime_1.jsx)("span", __assign({
+          className: "font-bold"
+        }, {
+          children: (0, moment_1["default"])(article.publishedAt).fromNow()
+        }), void 0)]
+      }, void 0), (0, jsx_runtime_1.jsx)("h1", __assign({
+        className: "text-2xl font-bold"
       }, {
-        children: isFavorite ? "Favorited" : "Favorite"
-      }), void 0), (0, jsx_runtime_1.jsx)("a", __assign({
-        target: "_blank",
-        className: "link",
-        href: article.url
+        children: article.title
+      }), void 0), (0, jsx_runtime_1.jsx)("img", {
+        src: article.urlToImage
+      }, void 0), (0, jsx_runtime_1.jsx)("p", {
+        children: article.description
+      }, void 0), (0, jsx_runtime_1.jsx)("p", {
+        children: article.content
+      }, void 0), (0, jsx_runtime_1.jsxs)("p", {
+        children: ["by ", (0, jsx_runtime_1.jsx)("span", __assign({
+          className: "font-bold"
+        }, {
+          children: article.author
+        }), void 0)]
+      }, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
+        className: "flex justify-between"
       }, {
-        children: article.source.name
+        children: [(0, jsx_runtime_1.jsx)("button", __assign({
+          onClick: toggleFavorite,
+          className: isFavorite ? "btn-unfav" : "btn-fav"
+        }, {
+          children: isFavorite ? "Favorited" : "Favorite"
+        }), void 0), (0, jsx_runtime_1.jsx)("a", __assign({
+          target: "_blank",
+          className: "link",
+          href: article.url
+        }, {
+          children: article.source.name
+        }), void 0)]
       }), void 0)]
     }), void 0)]
-  }), void 0);
+  }, void 0);
 }
 
 exports["default"] = ArticleFullComponent;

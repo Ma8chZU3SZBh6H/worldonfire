@@ -6,6 +6,8 @@ import Input from "../Components/Input";
 import Main from "../Layouts/Main";
 import { TypeFormRegister } from "../types/Types";
 import useInputs from "../Hooks/useInputs";
+//@ts-ignore
+import { ReactComponent, Head } from "@inertiajs/inertia-react";
 
 function Register() {
     const formHandler = (e: React.FormEvent) => {
@@ -21,6 +23,7 @@ function Register() {
     };
     return (
         <Main>
+            <Head title="Register" />
             <div className="flex justify-center pt-8">
                 <form onSubmit={formHandler} className="form">
                     <h1 className="form-title">Register</h1>

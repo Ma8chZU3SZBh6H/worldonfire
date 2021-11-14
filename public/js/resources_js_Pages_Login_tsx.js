@@ -637,7 +637,10 @@ var Main_1 = __importDefault(__webpack_require__(/*! ../Layouts/Main */ "./resou
 
 var inertia_1 = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 
-var useInputs_1 = __importDefault(__webpack_require__(/*! ../Hooks/useInputs */ "./resources/js/Hooks/useInputs.ts"));
+var useInputs_1 = __importDefault(__webpack_require__(/*! ../Hooks/useInputs */ "./resources/js/Hooks/useInputs.ts")); //@ts-ignore
+
+
+var inertia_react_2 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 function Login() {
   var formHandler = function formHandler(e) {
@@ -655,8 +658,10 @@ function Login() {
     });
   };
 
-  return (0, jsx_runtime_1.jsx)(Main_1["default"], {
-    children: (0, jsx_runtime_1.jsx)("div", __assign({
+  return (0, jsx_runtime_1.jsxs)(Main_1["default"], {
+    children: [(0, jsx_runtime_1.jsx)(inertia_react_2.Head, {
+      title: "Login"
+    }, void 0), (0, jsx_runtime_1.jsx)("div", __assign({
       className: "flex justify-center pt-8"
     }, {
       children: (0, jsx_runtime_1.jsxs)("form", __assign({
@@ -687,7 +692,7 @@ function Login() {
           children: "Create Account"
         }), void 0)]
       }), void 0)
-    }), void 0)
+    }), void 0)]
   }, void 0);
 }
 

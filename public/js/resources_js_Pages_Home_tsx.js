@@ -942,7 +942,10 @@ var ArticleComponent_1 = __importDefault(__webpack_require__(/*! ../Components/A
 
 var Nav_1 = __importDefault(__webpack_require__(/*! ../Components/Nav */ "./resources/js/Components/Nav.tsx"));
 
-var Pagination_1 = __importDefault(__webpack_require__(/*! ../Components/Pagination */ "./resources/js/Components/Pagination.tsx"));
+var Pagination_1 = __importDefault(__webpack_require__(/*! ../Components/Pagination */ "./resources/js/Components/Pagination.tsx")); //@ts-ignore
+
+
+var inertia_react_2 = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
 
 var Home = function Home() {
   var nav = (0, useNav_1["default"])().nav;
@@ -957,8 +960,10 @@ var Home = function Home() {
       setTitle = _b[1];
 
   var page = (0, inertia_react_1.usePage)().props.page;
-  return (0, jsx_runtime_1.jsx)(Main_1["default"], {
-    children: (0, jsx_runtime_1.jsxs)("div", __assign({
+  return (0, jsx_runtime_1.jsxs)(Main_1["default"], {
+    children: [(0, jsx_runtime_1.jsx)(inertia_react_2.Head, {
+      title: "World News"
+    }, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
       className: " gap-1 flex  items-start"
     }, {
       children: [nav.expanded && (0, jsx_runtime_1.jsx)(Nav_1["default"], {}, void 0), (0, jsx_runtime_1.jsxs)("div", __assign({
@@ -979,7 +984,7 @@ var Home = function Home() {
           page: page
         }, void 0)]
       }), void 0)]
-    }), void 0)
+    }), void 0)]
   }, void 0);
 };
 
