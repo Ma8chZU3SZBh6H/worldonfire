@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         $fav = null;
         if (Auth::check()) {
-            $favs = User::find(Auth::id())->Articles()->get();
+            $fav = User::find(Auth::id())->Articles()->get();
         }
 
         return Inertia::render('Home', [

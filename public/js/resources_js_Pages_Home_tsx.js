@@ -650,6 +650,8 @@ function useFavorite(article) {
   };
 
   var toggle = function toggle() {
+    console.log("ok??");
+
     if (favorite) {
       unfavoriteReq();
     } else {
@@ -867,6 +869,7 @@ var useNews_1 = __importDefault(__webpack_require__(/*! ../Hooks/useNews */ "./r
 function Main(_a) {
   var children = _a.children;
   var props = (0, inertia_react_1.usePage)().props;
+  console.log(props);
 
   var _b = (0, useNews_1["default"])(),
       newsActionSetNews = _b.newsActionSetNews,
